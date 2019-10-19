@@ -1,0 +1,19 @@
+// Avatar Mixin Settings Stylesheet
+// ========================================
+
+// Avatar Mixin
+@mixin avatar($size) {
+
+  // Variables
+  $avatar-display:      grid;
+  $avatar-overflow:     hidden;
+  $avatar-radius:       30em;
+  $avatar-text-align:   center;
+
+  // Structure
+  @include size($size);
+  border-radius: $avatar-radius;
+  display: $avatar-display;
+  overflow: $avatar-overflow;
+  text-align: $avatar-text-align;
+}

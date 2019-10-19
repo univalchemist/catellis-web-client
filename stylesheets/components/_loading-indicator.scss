@@ -1,0 +1,79 @@
+// Loading Indicator Component Stylesheet
+// ============================================
+
+// Variables
+$loading-indicator-margin:              $spacer-32 auto $spacer-16;
+$loading-indicator-position:            relative;
+$loading-indicator-size:                40px;
+
+$loading-indicator-icon-animation:      loadingFadeDelay 1.2s infinite ease-in-out both;
+$loading-indicator-icon-bg:             $gray-alt-1;
+$loading-indicator-icon-border-radius:  50%;
+$loading-indicator-icon-cords:          0 null null null;
+$loading-indicator-icon-delay:          -1.2s;
+$loading-indicator-icon-display:        block;
+$loading-indicator-icon-margin:         0 auto;
+$loading-indicator-icon-position:       absolute;
+$loading-indicator-icon-transform:      0deg;
+$loading-indicator-icon-size:           40px;
+$loading-indicator-icon-size-2:         15%;
+
+$loading-indicator-text-color:          $gray-alt-1;
+$loading-indicator-text-top:            45px;
+
+
+
+
+// Structure
+.loading-indicator {
+  @include position($loading-indicator-position);
+  @include size($loading-indicator-size);
+  margin: $loading-indicator-margin;
+
+  &__icon {
+    @include position($loading-indicator-icon-position, $loading-indicator-icon-cords);
+    @include size($loading-indicator-icon-size);
+
+    &::before {
+      @include size($loading-indicator-icon-size-2);
+      animation: $loading-indicator-icon-animation;
+      background-color: $loading-indicator-icon-bg;
+      border-radius: $loading-indicator-icon-border-radius;
+      content: " ";
+      display: $loading-indicator-icon-display;
+      margin: $loading-indicator-icon-margin;
+    }
+  }
+
+  &__text {
+    @extend .text--uppercase;
+    @include position($loading-indicator-position);
+    color: $loading-indicator-text-color;
+    top: $loading-indicator-text-top;
+  }
+
+  // Loading Indicator Icons Loop
+  @for $i from 1 through 12 {
+
+    &__icon--#{$i} {
+      transform: rotate($loading-indicator-icon-transform + (30 * $i));
+
+      &::before {
+        animation-delay: $loading-indicator-icon-delay + (0.1 * $i);
+      }
+    }
+  }
+}
+
+// Loading Indicator Animation
+@keyframes loadingFadeDelay {
+  0%,
+  39%,
+  100% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+}

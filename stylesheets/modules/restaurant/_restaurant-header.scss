@@ -1,0 +1,215 @@
+// Restaurant Header Modules Stylesheets
+// ========================================
+
+// Variables
+$rest-header-align-items:           center;
+$rest-header-display:               flex;
+$rest-header-spacer-pos:            all;
+$rest-header-spacer-type:           padding;
+
+$reset-header-menu-bg:              $black-alt-1;
+$reset-header-menu-bx-shadow:       5px 0 15px 0 rgba(10, 14, 19, 0.60);
+$rest-header-menu-cords:            0 null 0 null;
+$rest-header-menu-positon:          fixed;
+$rest-header-menu-size:             250px 100%;
+$rest-header-menu-transition:       left 0.35s linear;
+$rest-header-menu-z-index:          999;
+
+$reset-header-menu-c-left:          -350px;
+$reset-header-menu-o-left:          0;
+
+$rest-header-menu-label-transform:  uppercase;
+
+$reset-header-menu-link-color:      $white-base;
+$reset-header-menu-link-display:    block;
+$reset-header-menu-link-margin:     $spacer-0;
+$reset-header-menu-link-trans:      background-color 0.35s ease;
+
+$rest-header-menu-link-a-color:     $blue-base;
+$rest-header-menu-link-a-opacity:   1;
+
+$rest-header-menu-icon-align:       middle;
+
+$rest-header-menu-foot-link-color:  $white-base;
+
+$rest-header-overlay-bg:            rgba($black-alt-2, 0.7);
+$rest-header-overlay-cords:         0 0 0 0;
+$rest-header-overlay-position:      fixed;
+$rest-header-overlay-size:          100%;
+$rest-header-overlay-transition:    opacity 0.5s ease;
+
+$rest-header-overlay-c-opacity:     0;
+$rest-header-overlay-c-visibility:  hidden;
+
+$rest-header-overlay-o-opacity:     1;
+$rest-header-overlay-o-visibility:  visible;
+$rest-header-overlay-o-z-index:     $rest-header-menu-z-index - 1;
+
+// Structure
+.rest-header {
+  @extend .background--black-alt-1;
+  @include clearfix;
+  @include spacer($rest-header-spacer-type, $rest-header-spacer-pos, $spacer-16);
+  align-items: $rest-header-align-items;
+  display: $rest-header-display;
+
+  // Layout
+  &__left,
+  &__right {
+    float: left;
+  }
+
+  &__right {
+    margin-left: auto;
+    // Header Right Action Items
+    .action__list {
+      float: right;
+    }
+
+    .action__item {
+      margin-bottom: $spacer-0;
+      float: left;
+
+      &:not(:last-child) {
+        @include spacer(margin, right, $spacer-16);
+      }
+    }
+  }
+
+  &__middle {
+    @extend .text--center;
+    @include position(absolute, null 0 null 0);
+    @include size(330px auto);
+    margin: 0 auto;
+
+    i {
+      vertical-align: middle;
+    }
+
+    div {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .date-buttons {
+      @include spacer(margin, horizontal, $spacer-8);
+      float: left;
+    }
+
+    .date-trigger {
+      @include spacer(padding, horizontal, $spacer-16);
+      @include spacer(padding, vertical, $spacer-8);
+      border-radius: 5px;
+      transition: background-color 0.5s ease;
+
+      &:hover {
+        background-color: $black-alt-2;
+      }
+    }
+
+    .date-container {
+      @include position(absolute, -4px 0 null 0);
+
+      .rdt {
+        width: 100%;
+
+        &Days,
+        &Months,
+        &Years {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // Slide-Out Navigation
+  &__expanded-menu {
+    @include position($rest-header-menu-positon, $rest-header-menu-cords);
+    @include size($rest-header-menu-size);
+    background-color: $reset-header-menu-bg;
+    box-shadow: $reset-header-menu-bx-shadow;
+    transition: $rest-header-menu-transition;
+    z-index: $rest-header-menu-z-index;
+
+    // Header
+    &__header {
+      @include spacer(margin, bottom, $spacer-16);
+      @include spacer(padding, all, $spacer-24);
+      @include border(1px, solid, $black-alt-2, bottom);
+    }
+
+    // Link Group
+    &__link-group {
+      @include spacer(margin, bottom, $spacer-16);
+
+      label {
+        @include spacer(padding, bottom, $spacer-16);
+        @include spacer(padding, top, $spacer-8);
+        @include spacer(padding, horizontal, $spacer-24);
+        text-transform: $rest-header-menu-label-transform;
+      }
+    }
+    &__link-item {
+      margin-bottom: $reset-header-menu-link-margin;
+
+      a {
+        @include font-type($primary-sans-serif, normal, 700);
+        @include spacer(padding, vertical, $spacer-12);
+        @include spacer(padding, horizontal, $spacer-24);
+        color: $reset-header-menu-link-color;
+        display: $reset-header-menu-link-display;
+        transition: $reset-header-menu-link-trans;
+
+        &:hover,
+        &.active {
+          background-color: $rest-header-menu-link-a-color;
+          opacity: $rest-header-menu-link-a-opacity;
+        }
+      }
+
+      i {
+        @include spacer(margin, right, $spacer-24);
+        vertical-align: $rest-header-menu-icon-align;
+      }
+    }
+
+    // Footer
+    &__footer {
+      @extend .background--black-alt-2;
+      @include position(absolute, null 0 0 0);
+      @include spacer(padding, all, $spacer-24);
+
+      a {
+        color: $rest-header-menu-foot-link-color;
+      }
+    }
+
+    // State
+    &--closed {
+      left: $reset-header-menu-c-left;
+    }
+
+    &--open {
+      left: $reset-header-menu-o-left;
+    }
+
+    // Overlay
+    &-overlay {
+      @include position($rest-header-overlay-position, $rest-header-overlay-cords);
+      @include size($rest-header-overlay-size);
+      background-color: $rest-header-overlay-bg;
+      transition: $rest-header-overlay-transition;
+
+      &--closed {
+        opacity: $rest-header-overlay-c-opacity;
+        visibility: $rest-header-overlay-c-visibility;
+      }
+
+      &--open {
+        opacity: $rest-header-overlay-o-opacity;
+        visibility: $rest-header-overlay-o-visibility;
+        z-index: $rest-header-overlay-o-z-index;
+      }
+    }
+  }
+}

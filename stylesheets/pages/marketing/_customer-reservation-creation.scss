@@ -1,0 +1,110 @@
+// Customer Resvervation Creation Stylesheet
+// ========================================
+
+// Variables
+$customer-res-creation-bg-img:                    url('./assets/images/marketing/reservation/catellis-reservation-creation.jpg') no-repeat left bottom;
+$customer-res-creation-bg-img-cover:              cover;
+$customer-res-creation-bg-img-position:           fixed;
+$customer-res-creation-bg-img-height:             100%;
+$customer-res-creation-bg-img-height-sm:          250px;
+$customer-res-creation-bg-img-width-sm:           100%;
+$customer-res-creation-bg-img-width-md:           350px;
+$customer-res-creation-bg-img-width-xlg:          600px;
+
+$customer-res-creation-container-stretch-items:   stretch;
+$customer-res-creation-container-display:         flex;
+$customer-res-creation-container-height:          100%;
+
+$customer-res-creation-rt-overflow:               auto;
+$customer-res-creation-rt-position:               relative;
+$customer-res-creation-rt-size:                   100% 100vh;
+
+$customer-res-creation-nav-cords:                 16px 16px null null;
+$customer-res-creation-nav-display-sm:            none;
+$customer-res-creation-nav-display-md:            block;
+$customer-res-creation-nav-position:              absolute;
+
+$customer-res-creation-table-display:             table;
+$customer-res-creation-table-margin:              0 auto;
+$customer-res-creation-table-max-width:           600px;
+$customer-res-creation-table-size:                100%;
+
+$customer-res-creation-f-container-display:       table-cell;
+$customer-res-creation-f-container-position:      relative;
+$customer-res-creation-f-container-v-align:       middle;
+
+// Structure
+.customer-reservation-creation {
+
+  &__container {
+
+    @include media($medium) {
+      @include reset(padding, all);
+      align-items: $customer-res-creation-container-stretch-items;
+      display: $customer-res-creation-container-display;
+      height: $customer-res-creation-container-height;
+    }
+  }
+
+  &__left {
+    @include size($customer-res-creation-bg-img-width-sm $customer-res-creation-bg-img-height-sm);
+    background: $customer-res-creation-bg-img;
+    background-position: center;
+    background-size: $customer-res-creation-bg-img-cover;
+
+    @include media($medium) {
+      @include position($customer-res-creation-bg-img-position);
+      @include size($customer-res-creation-bg-img-width-md $customer-res-creation-bg-img-height);
+    }
+
+    @include media($extra-large) {
+      @include size($customer-res-creation-bg-img-width-xlg $customer-res-creation-bg-img-height);
+    }
+  }
+
+  &__right {
+    @include position($customer-res-creation-rt-position);
+    @include spacer(padding, horizontal, $spacer-32);
+
+    @include media($medium) {
+      @include size($customer-res-creation-rt-size);
+      margin-left: $customer-res-creation-bg-img-width-md;
+      overflow: $customer-res-creation-rt-overflow;
+    }
+
+    @include media($extra-large) {
+      margin-left: $customer-res-creation-bg-img-width-xlg;
+    }
+
+    &-nav {
+      @include position($customer-res-creation-nav-position, $customer-res-creation-nav-cords);
+      display: $customer-res-creation-nav-display-sm;
+
+      @include media($medium) {
+        display: $customer-res-creation-nav-display-md;
+        z-index: 99;
+      }
+    }
+
+    &-table {
+
+      @include media($medium) {
+        @include size($customer-res-creation-table-size);
+        display: $customer-res-creation-table-display;
+        margin: $customer-res-creation-table-margin;
+        max-width: $customer-res-creation-table-max-width;
+      }
+    }
+  }
+
+  &__form-container {
+    @include position($customer-res-creation-f-container-position);
+    @include spacer(padding, vertical, $spacer-32);
+
+    @include media($medium) {
+      @include spacer(padding, vertical, $spacer-128);
+      display: $customer-res-creation-f-container-display;
+      vertical-align: $customer-res-creation-f-container-v-align;
+    }
+  }
+}

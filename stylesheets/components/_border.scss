@@ -1,0 +1,22 @@
+// Border Component Style
+// ========================================
+
+// Variables
+$border-solid: solid;
+
+$border-1px:  1px;
+$border-2px:  2px;
+
+@each $border, $styles in $borders {
+  $border-color:  map-get($styles, border-color);
+
+  // Buttons
+  @for $border-width from 1 to 3 {
+
+    @each $border-pos, $keys in $spacer-positions {
+      .border-#{$border-pos}--#{$border} {
+        @include border(#{$border-width + "px"}, $border-solid, $border-color, $border-pos);
+      }
+    }
+  }
+}

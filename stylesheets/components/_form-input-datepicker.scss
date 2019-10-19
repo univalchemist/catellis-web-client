@@ -1,0 +1,170 @@
+// Form Input Datepicker Component Stylesheet
+// ==============================================
+// NOTE: These styles are based on a plugin being used for the datepicker.
+
+// Variables
+$dp-color:              $black-base;
+$dp-position:           relative;
+$dp-font-weight-1:      400;
+$dp-font-weight-2:      700;
+
+$dp-input-bg-image:     './assets/images/icons/functional/icon-date.svg';
+$dp-input-bg-position:  10px;
+
+$dp-form-bg:            $white-base;
+$dp-form-bradius:       5px;
+$dp-form-bxshadow:      0 8px 24px rgba($gray-dark, 0.25);
+$dp-form-cords-1:       73px 0 null 0;
+$dp-form-cords-2:       53px 0 null 0;
+$dp-form-opacity-0:     0;
+$dp-form-opacity-1:     1;
+$dp-form-position:      absolute;
+$dp-form-transition:    opacity 0.5s ease, top 0.5s ease;
+$dp-form-visibility-0:  hidden;
+$dp-form-visibility-1:  visible;
+$dp-form-z-index:       9999;
+
+$dp-table-size:         100%;
+$dp-table-mx-width:     400px;
+
+$dp-dow-color:          $gray-alt-1;
+$dp-dow-font-weight:    700;
+
+$dp-tbody-td-bg:        $gray-light;
+$dp-tbody-td-bradius:   5px;
+$dp-tbody-td-cursor:    pointer;
+$dp-tbody-td-trans:     background-color 0.35s ease;
+
+$dp-dow-old-opacity:    0.35;
+
+$dp-dow-today-color:    $blue-base;
+
+$dp-dow-disabled-cusor: not-allowed;
+
+$dp-dow-active-bg:      $blue-base;
+$dp-dow-active-color:   $white-base;
+
+
+// Structure
+.rdt {
+  @include position($dp-position);
+  @include s-foxtrot;
+  color: $dp-color;
+  font-weight: $dp-font-weight-1;
+
+  input {
+    @include spacer(padding, left, 40px);
+    background: $white-base url($dp-input-bg-image) no-repeat;
+    background-position: $dp-input-bg-position;
+  }
+
+  &Picker {
+    @include border(1px, solid, $border-color-alpha, all);
+    @include position($dp-form-position, $dp-form-cords-1);
+    @include spacer(padding, all, $spacer-8);
+    background: $dp-form-bg;
+    border-radius: $dp-form-bradius;
+    box-shadow: $dp-form-bxshadow;
+    opacity: $dp-form-opacity-0;
+    transition: $dp-form-transition;
+    visibility: $dp-form-visibility-0;
+    z-index: $dp-form-z-index;
+
+    table {
+      @include size($dp-table-size);
+    }
+
+    thead .rdtSwitch {
+      @extend .text--uppercase;
+      @include spacer(padding, vertical, $spacer-8);
+      @include s-echo;
+      transition: $dp-tbody-td-trans;
+      font-weight: $dp-font-weight-2;
+
+      &:hover {
+        background-color: $dp-tbody-td-bg;
+        border-radius: $dp-tbody-td-bradius;
+        cursor: $dp-tbody-td-cursor;
+      }
+    }
+
+    thead .dow {
+      @include spacer(padding, vertical, $spacer-8);
+      color: $dp-dow-color;
+      font-weight: $dp-dow-font-weight;
+    }
+
+    thead .rdtNext {
+      text-indent: -9999px;
+      background: transparent url(./assets/images/icons/functional/icon-arrow-right.svg) no-repeat center;
+      cursor: pointer;
+      transition: $dp-tbody-td-trans;
+    }
+
+    thead .rdtPrev {
+      text-indent: -9999px;
+      background: transparent url(./assets/images/icons/functional/icon-arrow-left.svg) no-repeat center;
+      cursor: pointer;
+      transition: $dp-tbody-td-trans;
+    }
+
+    thead .rdtNext:hover,
+    thead .rdtPrev:hover {
+      background-color: $dp-tbody-td-bg;
+      border-radius: $dp-tbody-td-bradius;
+      cursor: $dp-tbody-td-cursor;
+    }
+
+
+    tbody td {
+      transition: $dp-tbody-td-trans;
+      vertical-align: middle;
+
+      flex: 1;
+
+      &:hover {
+        background-color: $dp-tbody-td-bg;
+        border-radius: $dp-tbody-td-bradius;
+        cursor: $dp-tbody-td-cursor;
+      }
+    }
+
+    tbody .rdtDay,
+    tbody .rdtMonth,
+    tbody .rdtYear {
+      @extend .text--center;
+      @include spacer(padding, vertical, $spacer-8);
+    }
+
+    tbody .rdtOld,
+    tbody .rdtNew,
+    tbody .rdtDay.rdtDisabled {
+      opacity: $dp-dow-old-opacity;
+    }
+
+    tbody .rdtToday {
+      color: $dp-dow-today-color;
+    }
+
+    .rdtDisabled {
+      cursor: $dp-dow-disabled-cusor !important;
+    }
+
+    tbody .rdtActive {
+      background-color: $dp-dow-active-bg;
+      border-radius: $dp-tbody-td-bradius;
+      color: $dp-dow-active-color;
+      font-weight: $dp-font-weight-2;
+    }
+  }
+}
+
+.rdtOpen {
+
+  .rdtPicker {
+    @include position($dp-form-position, $dp-form-cords-2);
+    opacity: $dp-form-opacity-1;
+    transition: $dp-form-transition;
+    visibility: $dp-form-visibility-1;
+  }
+}

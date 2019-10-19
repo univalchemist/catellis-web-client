@@ -1,0 +1,50 @@
+// Avatar Component Stylesheets
+// ========================================
+
+// Variables
+$avatar-text-align:       center;
+$avatar-text-color:       $white-base;
+$avatar-text-display:     flex;
+$avatar-text-justify:     center;
+$avatar-text-margin:      auto;
+$avatar-text-size:        100%;
+$avatar-text-style:       normal;
+$avatar-text-transform:   uppercase;
+$avatar-text-weight:      700;
+
+$avatar-img-object-fit:   cover;
+$avatar-img-size:         100%;
+
+// Structure
+.avatar {
+
+  @each $avatar, $keys in $avatar-sizes {
+    $size-value:         map-get($keys, size-prop);
+    $text-size-value:    map-get($keys, text-size-prop);
+
+
+    // Avatar Size
+    &--#{$avatar} {
+      @include avatar($size-value);
+
+      // Avatar Text
+      .text {
+        @include font-type($primary-sans-serif, $avatar-text-style, $avatar-text-weight);
+        @include size($avatar-text-size);
+        align-items: $avatar-text-align;
+        color: $avatar-text-color;
+        display: $avatar-text-display;
+        font-size: $text-size-value;
+        justify-content: $avatar-text-justify;
+        margin: $avatar-text-margin;
+        text-transform: $avatar-text-transform;
+      }
+    }
+
+    // Avatar Image
+    .img {
+      @include size($avatar-img-size);
+      object-fit: $avatar-img-object-fit;
+    }
+  }
+}

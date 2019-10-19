@@ -1,0 +1,18 @@
+// Marketing Auth Page Stylesheets
+// ========================================
+
+// Variables
+$marketing-auth-bg:       $black-base
+                          url('./assets/images/marketing/auth/marketing-auth-img.jpg')
+                          center no-repeat;
+$marketing-auth-bg-size:  cover;
+$marketing-auth-size:     100% 100vh;
+
+// Structure
+.marketing-auth {
+  @include size($marketing-auth-size);
+  @include spacer(padding, top, $spacer-128);
+  @include spacer(padding, horizontal, $spacer-32);
+  background: $marketing-auth-bg;
+  background-size: $marketing-auth-bg-size;
+}

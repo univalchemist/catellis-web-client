@@ -1,0 +1,121 @@
+// Restaurant Schedule Layout Pages Stylesheets
+// ========================================
+
+// Variables
+$calendar-event-p-overflow:           ellipsis;
+
+$calendar-header-bg-color:            $gray-light;
+$calendar-header-border-bottom:       none;
+$calendar-header-border-radius:       3px;
+$calendar-header-display:             flex;
+$calendar-header-justify-content:     space-between;
+$calendar-header-align-center:        center;
+
+$calendar-header-month-color:         $gray-alt-2;
+
+$calendar-header-right-display:       inline-flex;
+$calendar-header-right-button-bg:     none;
+$calendar-header-right-button-border: none;
+
+// Structure
+.rest-settings {
+
+  &__aside {
+    max-height: 100%;
+    display: flex;
+
+    &__body {
+      height: calc(100% - 60px);
+      overflow: scroll;
+    }
+  }
+}
+
+.res-schedule {
+
+  &--calendar {
+
+    &__header {
+      @include border(1px, solid, $border-color-alpha, all);
+      @include spacer(padding, vertical, $spacer-12);
+      @include spacer(padding, horizontal, $spacer-16);
+      background-color: $calendar-header-bg-color;
+      border-bottom: $calendar-header-border-bottom;
+      border-top-left-radius: $calendar-header-border-radius;
+      border-top-right-radius: $calendar-header-border-radius;
+      display: $calendar-header-display;
+      justify-content: $calendar-header-justify-content;
+      align-items: $calendar-header-align-center;
+
+      &--left {
+        @extend .text--bold;
+        @include spacer(margin, bottom, $spacer-0);
+        color: $calendar-header-month-color;
+      }
+
+      &--right {
+        display: $calendar-header-right-display;
+
+        button {
+          background: $calendar-header-right-button-bg;
+          border: none;
+          line-height: 0;
+          padding: 2px;
+
+          &:active,
+          &:focus {
+            border: $calendar-header-right-button-border;
+          }
+        }
+      }
+    }
+
+    .rbc {
+
+      &-date-cell {
+
+        p {
+          @include reset(margin, bottom);
+        }
+      }
+
+      &-off-range-bg {
+        background-color: $gray-light;
+      }
+
+      &-event {
+        background-color: transparent;
+
+        &.rbc-selected {
+          background-color: transparent;
+        }
+
+        .event {
+          @extend .text--white;
+          @extend .text--bold;
+          @include s-golf;
+          @include overflow(overflow, hidden);
+          @include spacer(padding, all, $spacer-4);
+          @include spacer(margin, bottom, $spacer-0);
+          text-overflow: $calendar-event-p-overflow;
+          border-radius: 5px;
+        }
+      }
+
+      &-header {
+
+        p {
+          @include spacer(padding, vertical, $spacer-8);
+          @include spacer(margin, bottom, $spacer-0);
+          @extend .form__label;
+          @extend .text--uppercase;
+          color: $gray-alt-2;
+        }
+      }
+
+      &-show-more {
+        @include spacer(padding, left, $spacer-4);
+      }
+    }
+  }
+}

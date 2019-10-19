@@ -1,0 +1,41 @@
+// Spacers Mixin Settings Stylesheet
+// ========================================
+
+// Reset Mixin
+@mixin reset($type, $position) {
+  @if $position == "all" {
+    #{$type}: $spacer-0 !important;
+  } @else {
+    #{$type}-#{$position}: $spacer-0 !important;
+  }
+}
+
+// Spacer Mixin
+@mixin spacer($type, $position, $size) {
+
+  @if $position == "all" {
+    @if $type == "margin" {
+      margin: $size;
+    } @else if $type == "padding" {
+      padding: $size;
+    }
+  } @else if $position == 'vertical' {
+    @if $type == "margin" {
+      margin-bottom: $size;
+      margin-top: $size;
+    } @else if $type == "padding" {
+      padding-bottom: $size;
+      padding-top: $size;
+    }
+  } @else if $position == 'horizontal' {
+    @if $type == "margin" {
+      margin-left: $size;
+      margin-right: $size;
+    } @else if $type == "padding" {
+      padding-left: $size;
+      padding-right: $size;
+    }
+  } @else {
+    #{$type}-#{$position}: $size;
+  }
+}

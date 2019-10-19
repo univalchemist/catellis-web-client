@@ -1,0 +1,64 @@
+// Button Group Component Stylesheet
+// ========================================
+
+// Variables
+$button-group-background:     $gray-light;
+$button-group-overflow:       hidden;
+$button-group-radius:         5px;
+
+$button-item-display:         inline-flex;
+$button-item-justify-content: center;
+
+$button-item-div-size:        100%;
+
+$button-item-btn-background:  $button-group-background;
+$button-item-btn-border:      none;
+$button-item-btn-l-height:    0;
+$button-item-btn-radius:      0;
+
+// Structure
+.button-group {
+  @include border(1px, solid, $border-color-alpha, all);
+  @include spacer(margin, bottom, $spacer-16);
+  background-color: $button-group-background;
+  border-radius: $button-group-radius;
+  overflow: $button-group-overflow;
+
+  // Group Item
+  &__item {
+    @include reset(margin, bottom);
+    display: $button-item-display;
+    justify-content: $button-item-justify-content;
+
+    &:not(:last-child) {
+      @include border(1px, solid, $border-color-alpha, right);
+    }
+
+    // Calculate Item Width
+    @for $i from 1 through 4 {
+
+      &--#{$i} {
+        width: calc(100% / #{$i});
+      }
+    }
+  }
+
+  div {
+    @include size($button-item-div-size);
+
+    // Set Button Styles
+    button  {
+      background-color: $button-item-btn-background;
+      border: $button-item-btn-border;
+      border-radius: $button-item-btn-radius;
+      line-height: $button-item-btn-l-height;
+
+      &:hover {
+        background-color: darken($button-item-btn-background, 5%);
+      }
+      &:focus {
+        border: none;
+      }
+    }
+  }
+}

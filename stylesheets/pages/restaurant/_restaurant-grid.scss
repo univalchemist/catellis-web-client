@@ -1,0 +1,203 @@
+// Restaurant Grid Pages Stylesheets
+// ========================================
+
+// Variables
+$grid-axis-background: $black-alt-1;
+
+
+$grid-axis-item-align-center:               center;
+$grid-axis-item-color:                      $white-base;
+$grid-axis-item-display-flex:               flex;
+$grid-axis-item-justify-content:            center;
+
+$grid-axis-item-first-child-position:       fixed;
+$grid-axis-item-first-child-coords:         null null null 1px;
+
+$grid-body-coords:                          0 null null 64px;
+$grid-body-height:                          calc(100vh - 180px);
+$grid-body-position:                        relative;
+
+$grid-cell-item-display:                    inline-flex;
+
+$grid-cell-row-white-space-nowrap:          nowrap;
+$grid-cell-row-position:                    relative;
+
+$grid-cell-size:                            64px;
+
+$grid-reservation-container-position:       absolute;
+$grid-reservation-container-coords:         0 null null null;
+
+$grid-reservation-item-container-display:   inline-flex;
+$grid-reservation-item-container-position:  relative;
+
+$grid-reservation-item-align-item:          center;
+$grid-reservation-item-border-radius:       5px;
+$grid-reservation-item-display:             flex;
+$grid-reservation-item-size:                313px 58px;
+
+$grid-reservation-item-status-position:     absolute;
+$grid-reservation-item-status-coords:       16px 8px null null;
+
+$grid-size:                                 100%;
+
+$grid-x-axis-border-bottom:                 1px, solid, $black-alt-2, bottom;
+$grid-x-axis-container-position:            relative;
+$grid-x-axis-container-tranform-1:          scale(1);
+$grid-x-axis-coords:                        0 0 null 64px;
+$grid-x-axis-display:                       inline-flex;
+$grid-x-axis-position:                      absolute;
+$grid-x-axis-white-space-nowrap:            nowrap;
+$grid-x-axis-z-index:                       101;
+
+$grid-y-axis-position:                      absolute;
+$grid-y-axis-coords:                        64px null 0 0;
+$grid-y-axis-z-index:                       100;
+
+
+
+// Structure
+.rest-page__grid {
+  @include size($grid-size);
+  @include overflow(overflow, hidden);
+
+  // Grid Axis Items
+  &__x-axis li span,
+  &__y-axis li {
+    @extend .text--bold;
+    @extend .text--center;
+    @include reset(margin, all);
+    @include s-foxtrot;
+    @include size($grid-cell-size);
+    align-items: $grid-axis-item-align-center;
+    color: $grid-axis-item-color;
+    display: $grid-axis-item-display-flex;
+    justify-content: $grid-axis-item-justify-content;
+  }
+
+  // Grid X Axis
+  &__x-axis {
+    @include position($grid-x-axis-position, $grid-x-axis-coords);
+    background-color: $grid-axis-background;
+    z-index: $grid-x-axis-z-index;
+
+    ul {
+      white-space: $grid-x-axis-white-space-nowrap;
+    }
+
+    li {
+      display: $grid-x-axis-display;
+    }
+
+    li span {
+      display: $grid-x-axis-display;
+      @include border(1px, solid, $black-alt-2, bottom);
+    }
+
+    li:first-child {
+      @extend .text--bold;
+      @extend .text--center;
+      @include position($grid-axis-item-first-child-position, $grid-axis-item-first-child-coords);
+      @include border(1px, solid, $black-alt-2, bottom);
+      @include border(1px, solid, $black-alt-2, right);
+      @include reset(margin, all);
+      @include s-foxtrot;
+      @include size($grid-cell-size);
+      align-items: $grid-axis-item-align-center;
+      background-color: $grid-axis-background;
+      color: $grid-axis-item-color;
+      display: $grid-axis-item-display-flex;
+      justify-content: $grid-axis-item-justify-content;
+
+
+      @include media($medium) {
+        left: 17px;
+      }
+
+      @include media($large) {
+        left: 95px;
+      }
+    }
+  }
+
+  // Grid X Axis Container
+  &__x-container {
+    @include overflow(overflow, hidden);
+    @include position($grid-x-axis-container-position);
+    height: $grid-cell-size;
+    // transform: $grid-x-axis-container-tranform-1;
+  }
+
+  // Grid Y Axis
+  &__y-axis {
+    @include position($grid-y-axis-position, $grid-y-axis-coords);
+    background-color: $grid-axis-background;
+    z-index: $grid-y-axis-z-index;
+
+    li {
+      @include border(1px, solid, $black-alt-2, right);
+    }
+
+    li:nth-child(even) {
+      border-right: border(1px, solid, $blue-base, right);
+    }
+
+    li:not(:last-child) {
+      @include border(1px, solid, rgba($black-alt-2, 0.5), bottom);
+    }
+  }
+
+  &__body {
+    @include overflow(overflow, scroll);
+    @include position($grid-body-position, $grid-body-coords);
+    height: $grid-body-height;
+  }
+
+  // Grid Cells
+  &__cells {
+
+    &-row {
+      @include position(r$grid-cell-row-position);
+      height: $grid-cell-size;
+      white-space: $grid-cell-row-white-space-nowrap;
+    }
+
+    &--item {
+      @include reset(margin, all);
+      @include size($grid-cell-size);
+      border-right: 1px solid rgba($black-alt-2, 0.5);
+      border-bottom: 1px solid rgba($black-alt-2, 0.5);
+      display: $grid-cell-item-display;
+    }
+  }
+
+  &__reservation {
+
+    &__container {
+      @include position($grid-reservation-container-position, $grid-reservation-container-coords);
+    }
+
+    &__label-container {
+      @include position($grid-reservation-item-container-position);
+      @include spacer(margin, vertical, 3px);
+      @include spacer(margin, left, 3px);
+      display: $grid-reservation-item-container-display;
+
+      &:not(:first-child) {
+        @include spacer(margin, left, 7px);
+      }
+    }
+
+    &__label {
+      @include size($grid-reservation-item-size);
+      @include spacer(padding, vertical, $spacer-4);
+      @include spacer(padding, horizontal, $spacer-8);
+      align-items: $grid-reservation-item-align-item;
+      border-radius: $grid-reservation-item-border-radius;
+      display: $grid-reservation-item-display;
+    }
+
+    &__status {
+      @include position($grid-reservation-item-status-position, $grid-reservation-item-status-coords);
+    }
+  }
+}

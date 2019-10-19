@@ -1,0 +1,25 @@
+// Avatars Variables Settings Stylesheet
+// ========================================
+
+$avatar-sizes: (
+  sm: (
+    size-prop: $size-sm,
+    text-size-prop: $s-hotel
+  ),
+  md: (
+    size-prop: $size-md,
+    text-size-prop: $s-golf
+  ),
+  lg: (
+    size-prop: $size-lg,
+    text-size-prop: $s-echo
+  ),
+  xlg: (
+    size-prop: $size-xlg,
+    text-size-prop: $s-charlie
+  ),
+  xxlg: (
+    size-prop: $size-xxlg,
+    text-size-prop: $s-bravo
+  )
+);

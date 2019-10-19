@@ -1,0 +1,62 @@
+// Button Component Styles
+// ========================================
+
+// Variables
+$button-hover-cursor-disabled:      not-allowed;
+
+$button-input-height:               45px; // NOTE: Match Input Height
+$spacer-input-l-height:             $spacer-0;
+
+// Structure
+@each $button, $styles in $buttons {
+  $bg-color:      map-get($styles, background-color);
+  $border-color:  map-get($styles, border-color);
+  $color:         map-get($styles, color);
+
+  // Buttons
+  .button--#{$button},
+  input[type="submit"]  {
+    @include button($bg-color, $border-color, $color);
+
+    // Disabled Button Hover
+    &:hover {
+
+      @if $button == 'disabled' {
+        background-color: $bg-color;
+        border: 1px solid $bg-color;
+        cursor: $button-hover-cursor-disabled;
+      } @else if $button == 'modal' {
+        background-color: $gray-light;
+      }
+    }
+  }
+}
+
+// Button Sizes
+@each $button-size, $styles in $button-sizes {
+  $display:     map-get($styles, display);
+  $font-size:   map-get($styles, font-size);
+  $padding:     map-get($styles, padding);
+  $width:       map-get($styles, width);
+
+  .button--#{$button-size}  {
+    @include button-size($display, $font-size, $padding, $width);
+  }
+}
+
+// Button State
+.button--disabled,
+.disabled,
+input[type="submit"] {
+  @extend .button--disabled;
+}
+
+// Button Input Offset
+.button--input {
+  height: $button-input-height;
+  line-height: $spacer-input-l-height;
+}
+
+.button--modal {
+  line-height: $spacer-0;
+}

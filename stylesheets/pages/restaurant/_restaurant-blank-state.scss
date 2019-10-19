@@ -1,0 +1,28 @@
+// Restaurant Blank State Pages Stylesheet
+// ========================================
+
+// Structure
+.rest-page__section--blank {
+  @extend .text--center;
+  @include center();
+  @include spacer(padding, horizontal, $spacer-16);
+
+  // Title & Description
+  &__title,
+  &__description {
+    @extend .text--gray-med;
+  }
+
+  &__title {
+    @include spacer(margin, bottom, $spacer-8);
+  }
+
+  // Dark Section
+  &--dark {
+
+    .rest-page__section--blank__title,
+    .rest-page__section--blank__description {
+      @extend .text--white;
+    }
+  }
+}

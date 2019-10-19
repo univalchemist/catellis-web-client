@@ -1,0 +1,82 @@
+// Popout Component Stylesheet
+// ========================================
+
+// variables
+$popout-position:                 absolute;
+$popout-cords:                    null $spacer-0 100% null;
+$popout-size:                     auto;
+
+$popout-item-color:               $gray-alt-1;
+$popout-item-line-height:         22px;
+$popout-item-transition:          background-color 0.35s ease;
+$popout-item-white-space:         nowrap;
+
+$popout-button-icon-v-align:      middle;
+
+$popout-item-active-color:        $black-base;
+$popout-item-active-display:      flex;
+$popout-item-active-justify:      space-between;
+$popout-item-active-align-center: center;
+
+$popout-animation-bottom-50:       50%;
+$popout-animation-bottom-100:      100%;
+$popout-animation-opacity-0:       0;
+$popout-animation-opacity-1:       1;
+$popout-animation-transition:     bottom 0.5s ease, opacity 0.65s ease;
+
+// Structure
+.popout {
+  @include card($shadow: true, $shadowDark: true);
+  @include position($popout-position, $popout-cords);
+  @include spacer(padding, all, $spacer-16);
+  @include size($popout-size);
+
+  // Popout Trigger
+  &__button {
+
+    i {
+      @include spacer(margin, left, $spacer-8);
+      vertical-align: $popout-button-icon-v-align;
+    }
+  }
+
+  // Popout List Item
+  &__item {
+    @include reset(margin, bottom);
+    @include spacer(padding, all, $spacer-4);
+    color: $popout-item-color;
+    line-height: $popout-item-line-height;
+    transition: $popout-item-transition;
+    white-space: $popout-item-white-space;
+
+    // TODO: Let's refactor the hover state to be more global
+      // NOTE: Not making these component-specific variables as we need to abstract these out to a global action.
+    &:hover {
+      background-color: $gray-light;
+      border-radius: 5px;
+    }
+
+    a {
+      color: $popout-item-color;
+    }
+
+    &.is-active {
+      color: $popout-item-active-color;
+      display: $popout-item-active-display;
+      justify-content: $popout-item-active-justify;
+      align-items: $popout-item-active-align-center;
+    }
+  }
+
+  // Animation
+  &__animation-appear {
+    bottom: $popout-animation-bottom-50;
+    opacity: $popout-animation-opacity-0;
+
+    &-active {
+      bottom: $popout-animation-bottom-100;
+      opacity: $popout-animation-opacity-1;
+      transition: $popout-animation-transition;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+// Border Mixin Settings Stylesheets
+// ========================================
+
+@mixin border($border-width, $border-type, $border-color, $border-position) {
+  @if $border-position == "all" {
+    border: $border-width $border-type $border-color;
+  } @else {
+    border-#{$border-position}: $border-width $border-type $border-color;
+  }
+}

@@ -1,0 +1,80 @@
+// Colors Variables Settings Stylesheet
+// ========================================
+
+// Black
+$black-base:    #313B3F;
+
+$black-alt-1:   #273142;
+$black-alt-2:   #1B2431;
+
+// Blue
+$blue-base:    #0094F7;
+
+// Green
+$green-base:   #28BE89;
+
+// Grey
+$gray-light:   #F5F7F9;
+$gray-base:    #E1E6EB;
+$gray-dark:    #5D758D;
+
+$gray-alt-1:   #83909A;
+$gray-alt-2:   #737E86;
+
+// Orange
+$orange-base:  #FB8948;
+
+// Pink
+$pink-base:    #CF81C4;
+
+// Purple
+$purple-base:  #605DE0;
+
+// Yellow
+$yellow-base:  #FBD35D;
+
+// Red
+$red-base:     #FF5A4D;
+
+// White
+$white-base:   #FFFFFF;
+
+// Main Palette List
+$colors: (
+  black-base:    $black-base,
+  black-alt-1:   $black-alt-1,
+  black-alt-2:   $black-alt-2,
+  blue-base:     $blue-base,
+  green-base:    $green-base,
+  gray-light:    $gray-light,
+  gray-base:     $gray-base,
+  gray-dark:     $gray-dark,
+  gray-alt-1:    $gray-alt-1,
+  gray-alt-2:    $gray-alt-2,
+  orange-base:   $orange-base,
+  pink-base:     $pink-base,
+  purple-base:   $purple-base,
+  yellow-base:   $yellow-base,
+  red-base:      $red-base,
+  white-base:    $white-base
+);
+
+// For component use
+:export {
+  blackBase:    $black-base;
+  blackAlt1:    $black-alt-1;
+  blackAlt2:    $black-alt-2;
+  blueBase:     $blue-base;
+  greenBase:    $green-base;
+  grayLight:    $gray-light;
+  grayBase:     $gray-base;
+  grayDark:     $gray-dark;
+  grayAlt1:     $gray-alt-1;
+  grayAlt2:     $gray-alt-2;
+  orangeBase:   $orange-base;
+  pinkBase:     $pink-base;
+  purpleBase:   $purple-base;
+  yellowBase:   $yellow-base;
+  redBase:      $red-base;
+  whiteBase:    $white-base;
+}

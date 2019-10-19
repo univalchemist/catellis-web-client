@@ -1,0 +1,68 @@
+// Card Component Stylesheet
+// ========================================
+
+// Variables
+$card-dark-bg:                    $black-alt-1;
+
+$card-padding-lg:                 $spacer-32;
+
+$card-padding-md:                 $spacer-16;
+
+$card-padding-sm:                 $spacer-8;
+
+$card-hover-background:           rgba($gray-light, 0.3);
+$card-hover-cursor:               pointer;
+
+$card-overflow:                   hidden;
+$card-overflow-scroll:            scroll;
+
+$card-overflow-container-scroll:  scroll;
+$card-overflow-container-size-1:  auto calc(100vh - 190px);
+$card-overflow-container-size-2:  auto calc(100vh - 266px);
+
+// Structure
+.card {
+  @include card($shadow: false);
+
+  // Card Modifiers
+  &--shadow {
+    @include card($shadow: true);
+  }
+
+  &--dark {
+    background-color: $card-dark-bg;
+    border-color: $card-dark-bg;
+  }
+
+  // Card Types
+  @each $card, $keys in $card-sizes {
+    $size:   map-get($keys, size-prop);
+
+    &--#{$card} {
+      @include spacer(padding, all, $size);
+    }
+  }
+
+  // Overflow
+  &--overflow {
+    overflow: $card-overflow;
+  }
+
+  &--overflow-scroll {
+    overflow: $card-overflow-scroll;
+  }
+
+  // Deafult Overflow Container
+  &__overflow-container {
+    @include size($card-overflow-container-size-1);
+    @include spacer(padding, bottom, $spacer-32);
+    overflow: $card-overflow-container-scroll;
+
+    // Overflow With Footer Nav
+    &--footer {
+      @include size($card-overflow-container-size-2);
+      @include spacer(padding, bottom, $spacer-32);
+      overflow: $card-overflow-container-scroll;
+    }
+  }
+}

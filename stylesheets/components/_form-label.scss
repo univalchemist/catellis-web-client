@@ -1,0 +1,103 @@
+// Form Label Component Stylesheet
+// ========================================
+
+
+// Variabeles
+$form-label-color:                      $black-base;
+$form-label-display:                    inline-block;
+$form-label-margin:                     $spacer-4;
+$form-label-transform:                  capitalize;
+
+$form-label-offset-margin:              22px;
+
+$form-label-lg-display:                 block;
+
+$fieldset-border:                       1px solid $blue-base;
+$fieldset-margin:                       0 0 $spacer-32;
+
+$form-label-msg-margin:                 0 0 0 $spacer-4;
+
+$form-label-error-color:                $red-base;
+
+$form-label-success-color:              $green-base;
+
+$form-input-label-container-position:   relative;
+
+$form-input-error-label-color:          $red-base;
+$form-input-error-label-display:        block;
+$form-input-error-label-margin-btm:     $spacer-8;
+$form-input-error-label-margin-top:     -($spacer-12);
+
+$form-input-required-label-position:    absolute;
+$form-input-required-label-color:       $gray-alt-1;
+$form-input-required-label-coords:      2px 0px null null;
+
+
+// Structure
+label,
+.form__label {
+  @include font-type($primary-sans-serif, normal, $text-weight-bold);
+  @include s-golf;
+  color: $form-label-color;
+  display: $form-label-display;
+  margin-bottom: $form-label-margin;
+  text-transform: $form-label-transform;
+}
+
+// Offset if label is not present
+  // NOTE: Use to position button correctly on horizontal forms
+.label--offset {
+  @include media($medium) {
+    margin-top: $form-label-offset-margin;
+  }
+}
+
+// Label Sizes
+.label--large {
+  @extend p;
+  display: $form-label-lg-display;
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    @include position(relative, -2px null null null);
+  }
+}
+
+// Fieldset
+.fieldset--border {
+  border-bottom: $fieldset-border;
+  margin: $fieldset-margin;
+}
+
+// Label Modifiers
+.input--error {
+  color: $form-label-error-color;
+}
+
+.input--success {
+  color: $form-label-success-color;
+}
+
+// Input Badge Label Modifiers
+.input {
+
+  &__label-container {
+      @include position($form-input-label-container-position);
+  }
+
+  &__label--required {
+    @include position($form-input-required-label-position, $form-input-required-label-coords);
+    @include s-golf;
+    color: $form-input-required-label-color;
+    font-weight: $text-weight-regular;
+  }
+
+  &--error__label {
+    @extend .text--bold;
+    @include s-hotel;
+    color: $form-input-error-label-color;
+    display: $form-input-error-label-display;
+    margin-bottom: $form-input-error-label-margin-btm;
+    margin-top: $form-input-error-label-margin-top;
+  }
+}

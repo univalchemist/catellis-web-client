@@ -1,0 +1,183 @@
+// Restaurant Floor Creation Pages Stylesheet
+// =============================================
+
+// Variables
+$rfc-section-border-radius:     3px;
+$rfc-section-border-overflow:   scroll;
+$rfc-section-position:          relative;
+$rfc-section-size:              100%;
+
+$rfc-table-top-icon-fill-1:     $gray-base;
+
+$rfc-table-chair-icon-fill:     $gray-dark;
+$rfc-table-chair-icon-fill-op:  0.45;
+
+$rfc-icon-container-background: $gray-light;
+$rfc-icon-container-display:    grid;
+$rfc-icon-container-grid-temp:  repeat(2, 50%);
+$rfc-icon-container-grid-of:    hidden;
+$rfc-icon-container-position:   relative;
+$rfc-icon-container-radius:     3px;
+
+$rfc-table-icon-item-align:     center;
+$rfc-table-icon-item-display:   flex;
+$rfc-table-icon-item-height:    125px;
+$rfc-table-icon-item-justify:   center;
+
+$rfc-table-icon-svg-scale-m:    scale(.5);
+$rfc-table-icon-svg-scale-l:    scale(.6);
+
+$rfc-table-icon-cursor-cl:      pointer;
+$rfc-table-icon-cursor-mv:      move;
+$rfc-table-icon-display:        inline-block;
+$rfc-table-icon-position:       relative;
+
+$rfc-table-number-color-1:      $gray-dark;
+$rfc-table-number-color-2:      $white-base;
+$rfc-table-number-margin:       -2px;
+
+// Structure
+
+// TODO: Make more generic naming convention
+.rest-floor-create {
+
+  // Aside
+  &__aside {
+
+    // Table Icon Container
+    &__icon-container {
+      @include border(1px, solid, $border-color-alpha, all);
+      @include position($rfc-icon-container-position);
+      background: $rfc-icon-container-background;
+      border-radius: $rfc-icon-container-radius;
+      display: $rfc-icon-container-display;
+      grid-template-columns: $rfc-icon-container-grid-temp;
+      overflow: $rfc-icon-container-grid-of;
+    }
+
+    .rest-floor-create__table-icon {
+      @include border(1px, solid, $border-color-alpha, bottom);
+      align-items: $rfc-table-icon-item-align;
+      display: $rfc-table-icon-item-display;
+      height: $rfc-table-icon-item-height;
+      justify-content: $rfc-table-icon-item-justify;
+
+      &:nth-child(odd) {
+        @include border(1px, solid, $border-color-alpha, right);
+      }
+
+      &:nth-child(7),
+      &:nth-child(8) {
+        border-bottom: none;
+      }
+
+      svg {
+        /* zoom: $rfc-table-icon-svg-zoom; */
+        transform: $rfc-table-icon-svg-scale-m;
+
+        @include media ($extra-large) {
+          transform: $rfc-table-icon-svg-scale-l;
+        }
+      }
+    }
+
+    .table-chair-icon {
+      fill: $rfc-table-chair-icon-fill;
+      fill-opacity: $rfc-table-chair-icon-fill-op;
+    }
+
+    .table-top-icon {
+      fill: $rfc-table-top-icon-fill-1;
+    }
+  }
+
+  // Section
+  &__section {
+    @extend .card--dark;
+    @include position($rfc-section-position);
+    @include spacer(margin, bottom, $spacer-16);
+    @include spacer(padding, all, $spacer-16);
+    @include size($rfc-section-size);
+    border-radius: $rfc-section-border-radius;
+    overflow: $rfc-section-border-overflow;
+
+    // Grid Background
+    &--grid {
+      background-image: linear-gradient(0deg, transparent 24%, rgba($black-alt-2, 0.75) 25%, rgba($black-alt-2, 0.75) 26%, transparent 27%, transparent 74%, rgba($black-alt-2, 0.75) 75%, rgba($black-alt-2, 0.75) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba($black-alt-2, 0.75) 25%, rgba($black-alt-2, 0.75) 26%, transparent 27%, transparent 74%, rgba($black-alt-2, 0.75) 75%, rgba($black-alt-2, 0.75) 76%, transparent 77%, transparent);
+      background-position: $spacer-8 $spacer-8;
+      background-size: $spacer-32 $spacer-32;
+
+      .rest-floor-create__table-icon {
+        cursor: $rfc-table-icon-cursor-mv;
+      }
+    }
+
+    // Section Height Auto
+      // NOTE: Needed because of drag and drop layer
+    &--height-auto {
+      height: auto;
+    }
+
+    // NOTE: This is done for low resolution screens
+    /* Portrait and Landscape */
+    @media only screen
+      and (min-device-width: 768px)
+      and (max-device-width: 1024px)
+      and (-webkit-max-device-pixel-ratio: 1) {
+        background-size: 31px 31px;
+    }
+
+    /* Portrait */
+    @media only screen
+      and (min-device-width: 768px)
+      and (max-device-width: 1024px)
+      and (orientation: portrait)
+      and (-webkit-max-device-pixel-ratio: 1) {
+        background-size: 31px 31px;
+    }
+
+    // Table Icon
+    .rest-floor-create__table-number {
+      color: $rfc-table-number-color-2;
+
+      i {
+        vertical-align: middle;
+        display: block;
+      }
+    }
+
+    &--toggle {
+      @include position(absolute, null $spacer-24 $spacer-24 null);
+    }
+  }
+
+  // Table Icons
+  &__table-icon {
+    @include position($rfc-table-icon-position);
+    cursor: $rfc-table-icon-cursor-cl;
+    margin-top: -$spacer-8;
+    text-align: $rfc-table-icon-item-align;
+
+    //Assigned state
+    &--assigned .table-top-icon {
+      fill: $green-base;
+    }
+
+    // Active State
+    &--active .table-top-icon {
+      fill: $blue-base;
+    }
+
+    // Reserved State
+    &--reserved .table-top-icon {
+      fill: $pink-base;
+    }
+  }
+
+  &__table-number {
+    @extend .text--bold;
+    @include center($horizontal: true, $vertical: true);
+    color: $rfc-table-number-color-1;
+    margin-top: $rfc-table-number-margin;
+  }
+}

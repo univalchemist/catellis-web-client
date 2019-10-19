@@ -1,0 +1,97 @@
+// // Modal Component Stylesheet
+// // ========================================
+
+// Variables
+$modal-position:            relative;
+$modal-z-index:             9999;
+
+$modal-body-bx-shadow:      0 0 40px rgba($black-alt-2, 0.35);
+$modal-body-cords:          10% 0 null 0;
+$modal-body-margin:         0 auto;
+$modal-body-opacity:        1;
+$modal-body-position:       absolute;
+$modal-body-size:           100% auto;
+$modal-body-mx-width:       430px;
+$modal-body-transition:     top 0.75s ease, opacity 0.5s ease;
+
+$modal-body-start-pos:      -100%;
+$modal-body-start-opacity:  0;
+$modal-body-end-pos:        -50%;
+
+$modal-header-position:     relative;
+
+$modal-action-cords:        15px null null 8px;
+$modal-action-position:     absolute;
+
+$modal-overlay-bg-color:    rgba($black-alt-2, 0.5);
+$modal-overlay-cords:       0 0 0 0;
+$modal-overlay-position:    fixed;
+$modal-overlay-size:        100%;
+
+// Structure
+.modal {
+  @include position($modal-position);
+  z-index: $modal-z-index;
+
+  // State
+  &__state {
+
+    // Entering
+    &-enter {
+      .modal__body {
+        top: $modal-body-start-pos;
+        opacity: $modal-body-start-opacity;
+      }
+    }
+
+    // Leaving
+    &-leave {
+      .modal__body {
+        top: $modal-body-end-pos;
+        opacity: $modal-body-start-opacity;
+      }
+    }
+  }
+
+  // Body
+  &__body {
+    @include card();
+    @include position($modal-body-position, $modal-body-cords);
+    @include size($modal-body-size);
+    @include reset(padding, all);
+    box-shadow: $modal-body-bx-shadow;
+    margin: $modal-body-margin;
+    max-width: $modal-body-mx-width;
+    opacity: $modal-body-opacity;
+    transition: $modal-body-transition;
+
+    // Body Header
+    &-header {
+      @extend .text--center;
+      @include position($modal-header-position);
+      @include border(1px, solid, $border-color-alpha, bottom);
+      @include spacer(padding, all, $spacer-24);
+
+      .title {
+        @include reset(margin, bottom);
+      }
+    }
+
+    // Body Content
+    &-content {
+      @include spacer(padding, all, $spacer-24);
+    }
+  }
+
+  // Close Action
+  &__close-action {
+    @include position($modal-action-position, $modal-action-cords);
+  }
+
+  // Overlay
+  &__overlay {
+    @include position($modal-overlay-position, $modal-overlay-cords);
+    @include size($modal-overlay-size);
+    background-color: $modal-overlay-bg-color;
+  }
+}

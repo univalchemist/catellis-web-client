@@ -1,0 +1,32 @@
+// Alert Mixin Settings Stylesheet
+// ========================================
+
+// Alert Mixin
+@mixin alert($background-value) {
+
+  // Variables
+  $alert-border-radius:             3px;
+  $alert-box-shadow:                0 0 20px 0 rgba($black-alt-2, 1);
+  $alert-margin:                    0 auto $spacer-32;
+  $alert-padding:                   $spacer-16;
+  $alert-position:                  0 0 null 0;
+  $alert-text-align:                left;
+  $alert-white-space:               nowrap;
+  $alert-width:                     100%;
+  $alert-z-index:                   1000;
+
+  // Structure
+  @include font-type($primary-sans-serif, normal, 400);
+  @include position(relative, $alert-position);
+  background-color: $background-value !important;
+  border-radius: $alert-border-radius !important;
+  border: 1px $background-value solid !important;
+  box-shadow: $alert-box-shadow !important;
+  color: $white-base;
+  margin: $alert-margin;
+  padding: $alert-padding !important;
+  text-align: $alert-text-align;
+  white-space: $alert-white-space;
+  width: $alert-width !important;
+  z-index: $alert-z-index;
+}

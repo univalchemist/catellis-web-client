@@ -1,0 +1,19 @@
+// Border Variables
+// ========================================
+
+$border-color-alpha:    $gray-base;
+$border-color-bravo:    $blue-base;
+$border-color-charlie:  $black-alt-2;
+
+// Border Standard
+$borders: (
+  'alpha': (
+    border-color: $border-color-alpha
+  ),
+  'bravo': (
+    border-color: $border-color-bravo
+  ),
+   'charlie': (
+    border-color: $border-color-charlie
+  )
+);

@@ -1,0 +1,16 @@
+// Input Variables Settings Stylesheet
+// ========================================
+
+// Input Standard
+$inputs: (
+  'standard': (
+    background-color: $white-base,
+    border-color: $gray-alt-1,
+    color: $white-base
+  ),
+  'active': (
+    background-color: $white-base,
+    border-color: $blue-base,
+    color: $white-base
+  )
+);

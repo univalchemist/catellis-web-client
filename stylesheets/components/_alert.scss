@@ -1,0 +1,57 @@
+// Alert Component Stylesheet
+// ========================================
+
+// Variables
+$alert-icon-margin:   $spacer-16;
+
+
+$alert-inner-padding: $spacer-16;
+$alert-inner-height:  100%;
+
+$alert-or-left:       $spacer-0;
+$alert-or-margin:     0 auto;
+$alert-or-right:      $spacer-0;
+$alert-or-top:        $spacer-8;
+$alert-or-width:      auto;
+$alert-or-width-max:  420px;
+$alert-or-z-index:    99999;
+
+// Structure
+.alert {
+
+  // Alerts
+  @each $alert, $styles in $alerts  {
+    $color-1:  map-get($styles, background);
+
+    &--#{$alert} {
+      @include alert($color-1);
+
+      .material-icons {
+        margin-left: $alert-icon-margin;
+      }
+    }
+  }
+
+  // Alert Modifiers
+  &--no-shadow {
+    box-shadow: none !important; // NOTE: This must be set to important to override box-shadow styles that override the toast styles.
+  }
+}
+
+// DON'T LOOK AT ME!
+[data-css-b73eyd],
+[data-css-34g7wb] {
+  left: $alert-or-left !important;
+  margin: $alert-or-margin !important;
+  max-width: $alert-or-width-max !important;
+  right: $alert-or-right !important;
+  top: $alert-or-top !important;
+  width: $alert-or-width !important;
+  z-index: $alert-or-z-index !important;
+}
+
+[data-css-1wc6kks], // Success alert
+[data-css-je5d12] { // Error alert
+  padding: $alert-inner-padding !important;
+  height: $alert-inner-height !important;
+}

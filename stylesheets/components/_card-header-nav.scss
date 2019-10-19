@@ -1,0 +1,72 @@
+// Card Header Nav Component Stylesheet
+// ========================================
+
+// Variables
+$card-header-nav-container-bg:         $gray-light;
+
+$card-header-nav-item-align:           center;
+$card-header-nav-item-display:         inline-flex;
+
+$card-header-nav-link-align:           center;
+$card-header-nav-link-border-radius:   5px;
+$card-header-nav-link-color:           $gray-alt-1;
+$card-header-nav-link-display:         inline-flex;
+$card-header-nav-link-trans:           all 0.35s ease;
+
+$card-header-nav-link-h-bg:            $gray-base;
+$card-header-nav-link-h-opacity:       1;
+
+$card-header-nav-link-a-bg:            $pink-base;
+$card-header-nav-link-a-color:         $white-base;
+
+// Structure
+.card__header-nav {
+
+  // Container
+  &__container {
+    @include border(1px, solid, $border-color-alpha, bottom);
+    @include spacer(padding, all, $spacer-16);
+    background-color: $card-header-nav-container-bg;
+  }
+
+  // Item
+  &__item {
+    @include reset(margin, bottom);
+    align-items: $card-header-nav-item-align;
+    display: $card-header-nav-item-display;
+
+    &:not(:last-child) {
+      @include spacer(margin, right, $spacer-16);
+    }
+  }
+
+  // Link
+  &__link {
+    @include spacer(padding, all, $spacer-8);
+    @extend .text--bold;
+    align-items: $card-header-nav-link-align;
+    border-radius: $card-header-nav-link-border-radius;
+    color: $card-header-nav-link-color;
+    display: $card-header-nav-link-display;
+    transition: $card-header-nav-link-trans;
+
+    &:hover {
+      background-color: $card-header-nav-link-h-bg;
+      opacity: $card-header-nav-link-h-opacity;
+    }
+
+    &--active {
+      background-color: $card-header-nav-link-a-bg;
+      color: $card-header-nav-link-a-color;
+
+      &:hover {
+        background-color: $card-header-nav-link-a-bg;
+        opacity: $card-header-nav-link-h-opacity;
+      }
+    }
+
+    &__text {
+      @include spacer(margin, left, $spacer-8);
+    }
+  }
+}

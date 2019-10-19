@@ -1,0 +1,14 @@
+// Cards Variables Settings Stylesheet
+// ========================================
+
+$card-sizes: (
+  xs: (
+    size-prop: $size-xs
+  ),
+  sm: (
+    size-prop: $size-sm
+  ),
+  md: (
+    size-prop: $size-md
+  )
+);

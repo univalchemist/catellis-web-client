@@ -1,0 +1,165 @@
+// Typography Base Stylesheet
+// ========================================
+
+html{
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @include font-type($primary-sans-serif, normal, 400);
+  @include overflow(overflow-x, hidden);
+  @include s-foxtrot;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Highlight
+::selection {
+  background: $purple-base;
+  color: $white-base;
+}
+
+::-moz-selection {
+  background: $purple-base;
+  color: $white-base;
+}
+
+// Base Headers
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include font-type($primary-sans-serif, normal, 700);
+  color: $black-base;
+  line-height: 1.5;
+  margin-bottom: $spacer-16;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 { @include s-alpha;   }
+h2 { @include s-bravo;   }
+h3 { @include s-charlie  }
+h4 { @include s-delta;   }
+h5 { @include s-echo;    }
+h6 { @include s-foxtrot; }
+
+
+// Base Body Copy
+p {
+  @include font-type($primary-sans-serif, normal, 400);
+  @include s-foxtrot;
+  color: $black-base;
+  line-height: 1.5;
+  margin-bottom: $spacer-16;
+}
+
+small {
+  @include s-hotel;
+  margin-bottom: $spacer-8;
+}
+
+// Base List Styles
+li,
+dd{
+  @include font-type($primary-sans-serif, normal, 400);
+  @include s-foxtrot;
+  color: $black-base;
+  line-height: normal;
+  margin-bottom: $spacer-8;
+}
+
+
+// Base List Style
+a {
+  @include font-type(inherit, normal, 400);
+  color: $blue-base;
+  text-decoration: none;
+  transition: opacity 0.5s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  // FIXME: Temp style to demonstrate nav link state.
+  &.navLinkActive {
+    text-decoration: underline;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+// Base Text Inline Modifiers
+b,
+strong {
+  font-weight: 600;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+// Text Alignment
+@each $text-alignment in $text-alignments {
+  $name:   nth($text-alignment, 1);
+  $align:  nth($text-alignment, 2);
+
+  .text--#{$name} {
+    text-align: $align;
+  }
+}
+
+// Text Colors
+@each $name, $tones in $type-colors {
+  $tone-color: nth($tones, 1);
+
+  .text--#{$name} {
+    color: $tone-color;
+  };
+}
+
+// Text Transforms
+@each $text-transform in $text-transforms {
+  $name:        nth($text-transform, 1);
+  $transform:   nth($text-transform, 2);
+
+  .text--#{$name} {
+    text-transform: $transform;
+  }
+}
+
+// Text Weights
+@each $text-weight in $text-weights {
+  $name:      nth($text-weight, 1);
+  $weight:    nth($text-weight, 2);
+
+  .text--#{$name} {
+    font-weight: $weight;
+  }
+}
+
+// Text Sizes
+@each $text-size in $text-sizes {
+  $name:      nth($text-size, 1);
+  $size:      nth($text-size, 2);
+
+  .text--#{$name} {
+    font-size: $size;
+  }
+}
+
+// Text Styles
+.text--wrap {
+  word-wrap: break-word;
+}

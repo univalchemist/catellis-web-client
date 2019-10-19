@@ -1,0 +1,92 @@
+// Button Mixin Setting Stylesheet
+// ========================================
+
+// Button Standard
+@mixin button-shell(
+  $bg-color, $border-color) {
+
+  // Variables
+  $button-shell-border-type:    solid;
+  $button-shell-border-pos:     all;
+  $button-shell-border-radius:  5px;
+  $button-shell-border-width:   1px;
+
+  @include border($button-shell-border-width, $button-shell-border-type, $border-color, $button-shell-border-pos);
+  background: $bg-color;
+  border-radius: $button-shell-border-radius;
+}
+
+@mixin button($background-value, $border-color-value, $color-value) {
+
+  // Variables
+  $button-box-shadow-remove:          0 0 0 transparent;
+  $button-border-type:                solid;
+  $button-border-width:               1px;
+  $button-display:                    inline-block;
+  $button-line-height:                normal;
+  $button-padding:                    $spacer-16;
+  $button-radius:                     5px;
+  $button-text-align:                 center;
+  $button-text-transform:             capitalize;
+  $button-transition:                 background-color 0.3s ease-in-out;
+
+  $button-hover-cursor:               pointer;
+  $button-hover-opacity:              1;
+
+  $button-focus-border:               inherit;
+  $button-focus-outline:              none;
+  $button-focus-text-decoration:      none;
+
+  // Properties
+  @include button-shell($background-value, $border-color-value)
+  @include font-type($primary-sans-serif, normal, 700);
+  @include s-foxtrot;
+  background-color: $background-value;
+  border: $button-border-width $button-border-type;
+  border-color: $border-color-value;
+  color: $color-value;
+  display: $button-display;
+  height: auto;
+  line-height: $button-line-height;
+  padding: $button-padding;
+  text-align: $button-text-align;
+  text-decoration: none;
+  text-transform: $button-text-transform;
+  transition: $button-transition;
+  -webkit-appearance: none;
+
+  &:hover {
+    background-color: darken($background-value, 5%);
+    border-color: $border-color-value;
+    cursor: $button-hover-cursor;
+    opacity: $button-hover-opacity;
+  }
+
+  &:focus {
+    border: $button-focus-border;
+    outline: $button-focus-outline;
+    text-decoration: $button-focus-text-decoration;
+  }
+
+  &:active {
+    opacity: $button-hover-opacity;
+  }
+
+  &:focus,
+  &:active {
+    @include border($button-border-width, $button-border-type, $border-color-value, all);
+    box-shadow: $button-box-shadow-remove;
+  }
+}
+
+
+// Button Sizes
+@mixin button-size(
+  $display-value, $font-size-value, $padding-value, $width-value) {
+
+  // Properties
+  display: $display-value;
+  font-size: $font-size-value;
+  padding: $padding-value;
+  width: $width-value;
+}

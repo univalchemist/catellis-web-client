@@ -1,0 +1,35 @@
+// Form Input Select Component Stylesheet
+// ==========================================
+
+// Variables
+$select-background-position:         98%;
+$select-background-url:              './assets/images/icons/functional/icon-arrow-down.svg';
+$select-padding:                     25px;
+
+$select-background-inactive:         $gray-light;
+$select-border-color-inactive:       $gray-base;
+$select-border-pos-inactive:         all;
+$select-border-type-inactive:        solid;
+$select-border-width-inactive:       1px;
+$select-color-inactive:              $gray-dark;
+$select-cursor-inactive:             not-allowed;
+
+$select-arrow-appearance-hide:       none; // Hides default firefox arrow
+
+
+// Structure
+select {
+  @include font-type($primary-sans-serif, normal, 400);
+  background-image: url($select-background-url);
+  background-position: $select-background-position;
+  background-repeat: no-repeat;
+  padding-right: $select-padding !important; // NOTE: Forcing additional padding on the right so icon is not overlapped
+  -moz-appearance: $select-arrow-appearance-hide;
+
+  &:disabled {
+    @include border($select-border-width-inactive, $select-border-type-inactive, $select-border-color-inactive, $select-border-pos-inactive);
+    background-color: $select-background-inactive;
+    color: $select-color-inactive;
+    cursor: $select-cursor-inactive;
+  }
+}

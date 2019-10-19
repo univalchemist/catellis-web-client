@@ -1,0 +1,85 @@
+// Chip Component Stylesheet
+// ========================================
+
+// Variables
+$chip-align-item:                 center;
+$chip-display:                    flex;
+
+$chip-avatar-float:               left;
+$chip-avatar-spacer-position:     right;
+$chip-avatar-spacer-type:         margin;
+$chip-avatar-spacer-size:         $spacer-8;
+
+$chip-text-text-overflow:         hidden;
+$chip-text-text-text-overflow:    ellipsis;
+$chip-text-text-text-white-space: nowrap;
+
+$chip-list-item-align:            center;
+$chip-list-item-display:          inline-flex;
+$chip-list-item-line-height:      $spacer-0;
+$chip-list-item-vertical-align:   middle;
+
+// Structure
+.chip {
+  @include clearfix;
+  display: $chip-display;
+  align-items: $chip-align-item;
+
+
+  // Chip Sizes
+  @each $size, $keys in $avatar-sizes {
+    $size-value:         map-get($keys, size-prop);
+    $text-size-value:    map-get($keys, text-size-prop);
+
+    // Chip Content Sizing
+    &--#{$size} {
+
+      .avatar {
+        @include avatar($size-value);
+        @include spacer($chip-avatar-spacer-type, $chip-avatar-spacer-position, $chip-avatar-spacer-size);
+        float: $chip-avatar-float;
+        min-height: $size-value;
+        min-width: $size-value;
+      }
+
+      .title {
+        @include font-type($primary-sans-serif, normal, 700);
+        @include reset(margin, bottom);
+        font-size: $text-size-value;
+      }
+
+      .description {
+        @include reset(margin, bottom);
+        font-size: calc(#{$text-size-value} - 4px);
+      }
+    }
+  }
+
+  .title,
+  .description {
+    overflow: $chip-text-text-overflow;
+    text-overflow: $chip-text-text-text-overflow;
+    white-space: $chip-text-text-text-white-space;
+  }
+
+  // Chip List Item
+  &__description__item {
+    @include reset(margin, bottom);
+    @include s-golf;
+    align-items: $chip-list-item-align;
+    display: $chip-list-item-display;
+    line-height: $chip-list-item-line-height;
+    vertical-align: $chip-list-item-vertical-align;
+
+    &:not(:last-child) {
+      @include spacer(margin, right, $spacer-16);
+    }
+
+
+    // TODO: Make more global it's very specific right now
+    &--time {
+      @include size(55px auto);
+      line-height: normal;
+    }
+  }
+}

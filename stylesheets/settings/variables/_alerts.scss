@@ -1,0 +1,14 @@
+// Alerts Variables Settings Stylesheet
+// ========================================
+
+$alerts: (
+  'success': (
+    background: $green-base
+  ),
+  'error': (
+    background: $red-base
+  ),
+  'notification': (
+    background: $blue-base
+  )
+);

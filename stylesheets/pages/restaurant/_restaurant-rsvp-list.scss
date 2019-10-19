@@ -1,0 +1,75 @@
+// RSVP list Page Stylesheet
+// ========================================
+
+// Variables
+$rsvp-list-item-display:                       flex;
+
+$rsvp-list-item-left-right-display:            inline-flex;
+
+$rsvp-list-item-left-width:                    calc(100% - 67px);
+
+$rsvp-list-item-left-status-align:             flex-end;
+$rsvp-list-item-left-status-display:           inline-flex;
+$rsvp-list-item-left-status-flex-direction:    column;
+$rsvp-list-item-left-status-position:          absolute;
+$rsvp-list-item-left-status-coords:            null 14px null null;
+
+$rsvp-list-item-left-status-icon-display:      inline-block;
+
+$rsvp-list-item-left-status-conflict-position: absolute;
+$rsvp-list-item-left-status-conflict-coords:   17px 59px null null;
+
+$rsvp-list-item-right-align:                   center;
+$rsvp-list-item-right-justify-content:         center;
+$rsvp-list-item-right-width:                   66px;
+
+// Structure
+.rsvp-list {
+
+  &__item {
+    @include border(1px, solid, $border-color-alpha, bottom);
+    @include reset(margin, bottom);
+    display: $rsvp-list-item-display;
+
+
+    &--left {
+      @include border(1px, solid, $border-color-alpha, right);
+      display: $rsvp-list-item-left-right-display;
+      width: $rsvp-list-item-left-width;
+
+      .chip__list__item {
+        @include size(100% auto);
+        @include spacer(padding, right, $spacer-4);
+        @include spacer(padding, left, 20px);
+      }
+
+      &__status {
+        @include position($rsvp-list-item-left-status-position, $rsvp-list-item-left-status-coords);
+        align-items: $rsvp-list-item-left-status-align;
+        display: $rsvp-list-item-left-status-display;
+        flex-direction: $rsvp-list-item-left-status-flex-direction;
+
+        &-count {
+          @include reset(margin, bottom);
+          @include spacer(margin, right, 2px);
+        }
+
+        &-icon {
+          @include reset(margin, bottom);
+          display: $rsvp-list-item-left-status-icon-display;
+        }
+
+        &--conflict {
+          @include position($rsvp-list-item-left-status-conflict-position, $rsvp-list-item-left-status-conflict-coords);
+        }
+      }
+    }
+
+    &--right {
+      align-items: $rsvp-list-item-right-align;
+      display: $rsvp-list-item-left-right-display;
+      justify-content: $rsvp-list-item-right-justify-content;
+      width: $rsvp-list-item-right-width;
+    }
+  }
+}

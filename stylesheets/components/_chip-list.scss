@@ -1,0 +1,92 @@
+// Chip List Component Stylesheet
+// ========================================
+
+// Variables
+$chip-list-height:              calc(100vh - 218px);
+$chip-list-scroll:              scroll;
+$chip-list-top-0:               $spacer-0;
+$chip-list-top-64:              $spacer-64;
+$chip-list-trans:               top 0.75s ease;
+
+$chip-list-footer-height:       calc(100vh - 262px);
+
+$chip-item-border-color:        $border-color-alpha;
+$chip-item-border-pos:          bottom;
+$chip-item-border-type:         solid;
+$chip-item-border-width:        1px;
+$chip-list-item-opacity-0:      0;
+$chip-list-item-opacity-1:      1;
+$chip-list-item-pos:            relative;
+$chip-item-spacer-pos:          vertical;
+$chip-item-spacer-size:         $spacer-4;
+$chip-item-spacer-type:         padding;
+$chip-list-item-trans:          opacity 1.25s ease, width 1s ease;
+
+$chip-item-link-bg-color:       transparent;
+$chip-item-link-border-color:   $chip-item-link-bg-color;
+$chip-item-link-border-pos:     all;
+$chip-iten-link-border-radius:  5px;
+$chip-iten-link-display:        block;
+$chip-item-link-spacer-pos:     all;
+$chip-item-link-spacer-size:    $spacer-4;
+$chip-item-link-spacer-type:    padding;
+$chip-item-link-trans-1:        background-color 0.35s ease;
+$chip-item-link-trans-2:        border-color 0.35s ease;
+
+$chip-item-link-a-border-bg:    rgba($blue-base, 0.15);
+$chip-item-link-a-border-color: $border-color-bravo;
+$chip-item-link-a-border-op:    1;
+
+// Structure
+.chip__list {
+  transition: $chip-list-trans;
+
+  &--100vh {
+    @include size(auto $chip-list-height);
+  }
+
+  &__item {
+    @extend .margin--reset;
+    @include border($chip-item-border-width, $chip-item-border-type, $chip-item-border-color, $chip-item-border-pos);
+    @include position($chip-list-item-pos);
+    @include spacer($chip-item-spacer-type, $chip-item-spacer-pos, $chip-item-spacer-size);
+    opacity: $chip-list-item-opacity-1;
+    transition: $chip-list-item-trans;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      @include border($chip-item-border-width, $chip-item-border-type, $chip-item-link-border-color, $chip-item-link-border-pos);
+      @include button-shell($chip-item-link-bg-color, $chip-item-link-border-color);
+      @include spacer($chip-item-link-spacer-type, $chip-item-link-spacer-pos, $chip-item-link-spacer-size);
+      @include reset(margin, bottom);
+      display: $chip-iten-link-display;
+      transition: $chip-item-link-trans-1, $chip-item-link-trans-2;
+
+
+      &:hover,
+      &.active {
+        @include button-shell($chip-item-link-a-border-bg, $chip-item-link-a-border-color);
+        opacity: $chip-item-link-a-border-op;
+
+        .material-icons {
+          color: $blue-base !important;
+        }
+      }
+    }
+  }
+
+  // Chip List Animation
+  &--animation-appear {
+
+    &.chip__list {
+      top: $chip-list-top-64;
+    }
+
+    .chip__list__item {
+      opacity: $chip-list-item-opacity-0;
+    }
+  }
+}

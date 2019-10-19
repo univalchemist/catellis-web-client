@@ -1,0 +1,82 @@
+// Typography Variables Settings Stylesheet
+// ===============================================
+
+// Font Families
+$primary-sans-serif:        'Roboto', sans-serif;
+
+// Sizes
+$font-size-base:  15px;
+
+$s-alpha:         42px;
+$s-bravo:         36px;
+$s-charlie:       24px;
+$s-delta:         18px;
+$s-echo:          16px;
+$s-foxtrot:       $font-size-base;
+$s-golf:          12px;
+$s-hotel:         10px;
+
+// Line Heights
+$base-line-height: 1.5;
+$base-line-small:  $font-size-base;
+
+// Text Alignment
+$text-align-center:  center;
+$text-align-left:    left;
+$text-align-justify: justify;
+$text-align-right:   right;
+
+// Text Alignment List
+$text-alignments: (
+  center    $text-align-center,
+  left      $text-align-left,
+  justify   $text-align-justify,
+  right     $text-align-right
+);
+
+// Text Colors Map
+$type-colors: (
+  'black':     ( $black-base  ),
+  'blue':      ( $blue-base   ),
+  'green':     ( $green-base  ),
+  'gray':      ( $gray-base   ),
+  'gray-dark': ( $gray-dark   ),
+  'gray-med':  ( $gray-alt-1  ),
+  'orange':    ( $orange-base ),
+  'yellow':    ( $yellow-base ),
+  'red':       ( $red-base    ),
+  'white':     ( $white-base  )
+);
+
+// Text Sizes List
+$text-sizes: (
+  tiny       $s-hotel,
+  small      $s-golf,
+  base       $s-foxtrot,
+  large      $s-charlie,
+  ex-large   $s-alpha,
+);
+
+// Text Transforms
+$text-transform-capitalize:   capitalize;
+$text-transform-uppercase:    uppercase;
+$text-transform-lowercase:    lowercase;
+
+// Text Transforms List
+$text-transforms: (
+  capitalize   $text-transform-capitalize,
+  uppercase    $text-transform-uppercase,
+  lowercase    $text-transform-lowercase
+);
+
+// Text Weights
+$text-weight-bold:      700;
+$text-weight-regular:   400;
+$text-weight-light:     300;
+
+// Text Weights List
+$text-weights: (
+  bold      $text-weight-bold,
+  regular   $text-weight-regular,
+  light     $text-weight-light
+);

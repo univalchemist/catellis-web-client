@@ -1,0 +1,70 @@
+// Form Input Checkbox Component Stylesheet
+// ============================================
+
+// Variables
+$checkbox-background:                   $white-base;
+$checkbox-border-radius:                3px;
+$checkbox-cursor:                       pointer;
+$checkbox-dimensions:                   17px;
+$checkbox-display:                      inline-block;
+$checkbox-margin:                       0 $spacer-4 0 0;
+$checkbox-padding:                      0;
+$checkbox-position:                     relative;
+$checkbox-transition:                   all 0.2s ease-in;
+$checkbox-v-align:                      bottom;
+
+$checkbox-background-disabled:          $gray-alt-2;
+$checkbox-cursor-disabled:              not-allowed;
+
+$checkbox-label-cursor:                 pointer;
+
+$checkbox-checked-background:           $blue-base;
+$checkbox-checked-bg:                   url(./assets/images/icons/functional/icon-checkmark.svg) no-repeat center center;
+$checkbox-checked-bg-size:              12px;
+$checkbox-checked-size:                 100%;
+$checkbox-checked-text-align:           center;
+
+
+// Structure
+input[type="checkbox"],
+input[type="checkbox"]:focus,
+input[type="checkbox"]:active, {
+  @include position($checkbox-position);
+  @include size($checkbox-dimensions $checkbox-dimensions);
+  background-color: $checkbox-background;
+  border-radius: $checkbox-border-radius;
+  display: $checkbox-display;
+  margin: $checkbox-margin;
+  outline: none;
+  padding: $checkbox-padding;
+  transition: $checkbox-transition;
+  vertical-align: $checkbox-v-align;
+
+  &:hover{
+    cursor: $checkbox-cursor;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $checkbox-background-disabled;
+
+    &:hover {
+      cursor: $checkbox-cursor-disabled;
+    }
+  }
+}
+
+input[type="checkbox"]:checked {
+  background-color: $checkbox-checked-background;
+  border-color: $checkbox-checked-background;
+
+  &:after{
+    @include position(absolute, 0 0 null 0);
+    @include size($checkbox-checked-size);
+    background: $checkbox-checked-bg;
+    background-size: $checkbox-checked-bg-size;
+    content: '';
+    text-align: $checkbox-checked-text-align;
+    transition: $checkbox-transition;
+  }
+}

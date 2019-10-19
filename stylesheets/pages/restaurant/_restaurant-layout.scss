@@ -1,0 +1,440 @@
+// Restaurant Layout Pages Stylesheets
+// ========================================
+
+// Variables
+$rest-container-display:                 flex;
+$rest-container-height:                  calc(100vh - 86px);
+$rest-container-float-m:                 right;
+$rest-container-width-m:                 calc(100% - 16px);
+$rest-container-width-l:                 calc(100% - 94px);
+
+$rest-container-child-grid-div-height:   100%;
+
+$rest-section-position:                  relative;
+$rest-section-size:                      auto 100%;
+
+$rest-page-cancel-link-display:          inline-block;
+$rest-page-cancel-link-float:            left;
+
+$rest-page-nav-display-sm:               none;
+$rest-page-nav-display-lg:               inline-block;
+
+$rest-page-nav-active-link-color:        $blue-base;
+
+$rest-page-aside-back-link-display:      inline-block;
+
+$rest-page-aside-body-avatar:            0 auto;
+
+
+$rest-page-aside-footer-bg:              $white-base;
+$rest-page-aside-footer-bx-shadow:       0 -2px 10px 0 rgba(39,49,66,0.15);
+$rest-page-aside-footer-cords:           null 0 0 0;
+$rest-page-aside-footer-position:        absolute;
+$rest-page-aside-footer-size:            100% auto;
+
+$rest-page-aside-body-overflow-x:        hidden;
+$rest-page-aside-body-overflow-y:        scroll;
+$rest-page-aside-body-top:               0;
+
+$rest-page-aside-body-with-footer:       calc(100vh - 289px);
+
+$rest-page-aside-flist-display:          flex;
+
+$rest-page-aside-flink-color:            $gray-alt-2;
+$rest-page-aside-flink-color-a:          $blue-base;
+$rest-page-aside-flink-font-weight:      400;
+$rest-page-aside-flink-min-width:        70px;
+$rest-page-aside-flink-min-width-m:      25%;
+$rest-page-aside-flink-size:             100%;
+
+$rest-page-aside-aicon-color:            $gray-base !important;
+$rest-page-aside-aicon-trans:            color 0.35s ease;
+
+$rest-page-aside-bicon-v-align:          middle;
+$rest-page-aside-bicon-margin-top:       -2px;
+
+$rest-page-aside-ficon-display:          block;
+$rest-page-aside-ficon-lheight:          $spacer-12;
+
+$rest-page-res-list-height:              calc(100% - 168px);
+
+$rest-page-res-li-transition:            height .5s ease;
+
+$rest-page-res-li-exp-transform:         rotate(0deg);
+$rest-page-res-li-exp-transition:        transform .5s ease;
+
+$rest-page-res-li-container-height:      100%;
+
+$rest-page-res-li-content-height:        calc(100% - 60px);
+
+$rest-page-res-li-header-align:          center;
+$rest-page-res-li-header-bg:             $gray-light;
+$rest-page-res-li-header-color:          $gray-alt-2;
+$rest-page-res-li-header-cursor:         pointer;
+$rest-page-res-li-header-display:        inline-flex;
+$rest-page-res-li-header-width:          100%;
+
+$rest-page-res-li-header-action-coords:  null 21px null null;
+$rest-page-res-li-header-action-position:absolute;
+$rest-page-res-li-header-action-transf:  rotate(-90deg);
+$rest-page-res-li-header-action-transit: transform .5s ease;
+
+$rest-page-res-li-header-count-coords:   null 83px null null;
+$rest-page-res-li-header-count-position: absolute;
+
+$rest-page-res-li-header-i-coords:       null 20px null null;
+$rest-page-res-li-header-i-position:     absolute;
+
+$rest-page-res-li-header-i-v-align:      middle;
+
+$rest-page-form-action-items-align:      center;
+$rest-page-form-action-items-display:    flex;
+$rest-page-form-action-items-float:      right;
+
+// Structure
+.rest-page {
+
+  // Container
+  &__container {
+    @include clearfix;
+    @include spacer(padding, all, $spacer-16);
+    @include spacer(padding, bottom, $spacer-0);
+    @include spacer(padding, left, $spacer-0);
+    height: $rest-container-height;
+
+    @include media($medium) {
+      @include size($rest-container-width-m $rest-container-height);
+      display: $rest-container-display;
+      float: $rest-container-float-m;
+
+      @include media($landscape) {
+        width: $rest-container-width-m !important;
+      }
+    }
+
+    @include media($large) {
+      @include size($rest-container-width-l $rest-container-height);
+    }
+
+    // Add height to child grid <div>s
+      // FIXME: Be more specific!!!
+    & > div,
+    .row > div {
+      height: $rest-container-child-grid-div-height;
+    }
+  }
+
+  // Asdide + Section
+  &__aside,
+  &__section {
+    @include size($rest-section-size);
+    display: $rest-container-display;
+  }
+
+  // Section
+  &__section {
+    @include position($rest-section-position);
+
+    // Section With Header (Optional)
+    &--header .card {
+      @include reset(padding, all);
+    }
+
+    // Section Header
+    &__header {
+      @include border(1px, solid, $border-color-alpha, bottom);
+      @include spacer(padding, all, $spacer-24);
+
+      .chip {
+        @include spacer(margin, top, 5px);
+      }
+    }
+
+    &__header-action {
+      @extend .text--right;
+    }
+
+    // Section Body
+    &__body {
+      @include position(relative);
+      @include spacer(padding, all, $spacer-24);
+      @include spacer(padding, bottom, $spacer-8);
+      @include size(100% calc(100% - 149px));
+      overflow-x: $rest-page-aside-body-overflow-x;
+      overflow-y: $rest-page-aside-body-overflow-y;
+
+      .divider {
+        @include spacer(margin, vertical, $spacer-32);
+      }
+    }
+
+    &__body-form {
+
+      .actions {
+        @include clearfix;
+        @include spacer(margin, top, $spacer-16);
+        align-items: $rest-page-form-action-items-align;
+        display: $rest-page-form-action-items-display;
+        float: $rest-page-form-action-items-float;
+      }
+
+      input[type="submit"],
+      .cancel-link {
+        display: $rest-page-cancel-link-display;
+        float: $rest-page-cancel-link-float;
+      }
+
+      .cancel-link {
+        @extend .text--gray-dark;
+        @include spacer(margin, right, $spacer-16);
+      }
+    }
+  }
+
+  // Aside
+  &__aside {
+
+    // Reset Card Padding
+    .card {
+      @include reset(padding, all);
+    }
+
+    // Aside Header
+    &__header {
+      @include border(1px, solid, $border-color-alpha, bottom);
+      @include spacer(padding, all, $spacer-24);
+      @include spacer(padding, bottom, $spacer-8);
+      background-color: $white-base;
+      display: flex;
+      justify-content: space-between;
+
+      &--sm {
+        @include spacer(padding, all, $spacer-16);
+
+        h4 {
+          @include spacer(margin, bottom, $spacer-0);
+        }
+      }
+    }
+
+    // Detail Back Link
+    &__back-link {
+      @include spacer(margin, bottom, $spacer-16);
+      display: $rest-page-aside-back-link-display;
+
+      .material-icons,
+      .title {
+        display: inline-block;
+      }
+
+      .material-icons {
+        margin-top: $rest-page-aside-bicon-margin-top;
+        vertical-align: $rest-page-aside-bicon-v-align;
+      }
+
+      .title {
+        @include reset(margin, bottom);
+        @include spacer(margin, left, $spacer-8);
+      }
+    }
+
+    &__res-list {
+      @include position(relative, 0 null null null);
+      @include overflow(overflow, hidden);
+      height: $rest-page-res-list-height;
+
+      &-item {
+        @include overflow(overflow, hidden);
+        @include reset(margin, bottom);
+        transition: $rest-page-res-li-transition;
+
+        &__header {
+          @include border(1px, solid, $border-color-alpha, bottom);
+          @include spacer(padding, vertical, $spacer-16);
+          @include spacer(padding, horizontal, $spacer-24);
+          background-color: $rest-page-res-li-header-bg;
+          width: $rest-page-res-li-header-width;
+          cursor: $rest-page-res-li-header-cursor;
+
+          &--border-top {
+            @include border(1px, solid, $border-color-alpha, top);
+          }
+
+          & h4 {
+            @include reset(margin, bottom);
+            color: $rest-page-res-li-header-color;
+          }
+
+          &-list {
+            align-items: $rest-page-res-li-header-align;
+            display: $rest-page-res-li-header-display;
+          }
+
+          &--count {
+            @include position($rest-page-res-li-header-count-position, $rest-page-res-li-header-count-coords);
+            @include reset(margin, bottom);
+            align-items: $rest-page-res-li-header-align;
+            display: $rest-page-res-li-header-display;
+
+            .material-icons {
+              @include position($rest-page-res-li-header-i-position, $rest-page-res-li-header-i-coords);
+            }
+          }
+
+          &--action {
+            @include position($rest-page-res-li-header-action-position, $rest-page-res-li-header-action-coords);
+            @include reset(margin, bottom);
+            transform: $rest-page-res-li-header-action-transf;
+            transition: $rest-page-res-li-header-action-transit;
+
+            .material-icons {
+              vertical-align: $rest-page-res-li-header-i-v-align;
+            }
+          }
+        }
+
+        &__container {
+          height: $rest-page-res-li-container-height;
+
+          &--content {
+            @include overflow(overflow, scroll);
+            height: $rest-page-res-li-content-height;
+          }
+        }
+
+        &.is-expanded {
+          .rest-page__aside__res-list-item__header--action {
+            transform: $rest-page-res-li-exp-transform;
+            transition: $rest-page-res-li-exp-transition;
+          }
+
+          &:first-child {
+
+            .rest-page__aside__res-list-item__container--content {
+              @include border(1px, solid, $border-color-alpha, bottom);
+            }
+          }
+        }
+      }
+    }
+
+    // Body
+    &__body {
+      @include position(relative);
+      @include spacer(padding, all, $spacer-24);
+      overflow-x: $rest-page-aside-body-overflow-x;
+      overflow-y: $rest-page-aside-body-overflow-y;
+      top: $rest-page-aside-body-top;
+
+      &--footer {
+        @include size(auto);
+      }
+
+      &--pad-sm {
+        @include spacer(padding, top, $spacer-8);
+      }
+
+      &--border-btm {
+        @include border(1px, solid, $border-color-alpha, bottom);
+      }
+    }
+
+    &__no-search-results {
+      @extend .text--center;
+      @include spacer(margin, top, $spacer-16);
+    }
+
+    &__form {
+
+      .avatar {
+        margin: $rest-page-aside-body-avatar;
+      }
+    }
+
+    // Footer Nav
+    &__footer {
+      @include border(1px, solid, $border-color-alpha, top);
+      @include position($rest-page-aside-footer-position, $rest-page-aside-footer-cords);
+      @include spacer(padding, vertical, $spacer-4);
+      @include size($rest-page-aside-footer-size);
+      background-color: $rest-page-aside-footer-bg;
+
+      // Footer List
+      .list {
+        display: $rest-page-aside-flist-display;
+      }
+
+      .item {
+        @extend .text--center;
+        @include reset(margin, bottom);
+        @include size($rest-page-aside-flink-size);
+      }
+
+      .link Button {
+        min-width: $rest-page-aside-flink-min-width;
+
+        @include media ($medium) {
+          min-width: $rest-page-aside-flink-min-width-m;
+        }
+
+        @include media ($large) {
+          min-width: $rest-page-aside-flink-min-width;
+        }
+      }
+
+      .link Button,
+      .material-icons {
+        @include s-hotel;
+        color: $rest-page-aside-flink-color;
+        font-weight: $rest-page-aside-flink-font-weight;
+      }
+
+      .link.active Button,
+      .active .material-icons {
+        color: $rest-page-aside-flink-color-a;
+      }
+
+      .material-icons {
+        @include spacer(margin, vertical, $spacer-8);
+        @include s-charlie;
+        display: $rest-page-aside-ficon-display;
+        line-height: $rest-page-aside-ficon-lheight;
+      }
+    }
+  }
+
+  // Page Nav
+  &__page-nav {
+    @include spacer(padding, all, $spacer-16);
+    display: $rest-page-nav-display-sm;
+
+    @include media($medium) {
+      display: $rest-page-nav-display-sm;
+
+      @include media($landscape) {
+        display: $rest-page-nav-display-sm !important;
+      }
+    }
+
+    @include media($large) {
+      display: $rest-page-nav-display-lg;
+    }
+
+    button {
+      line-height: $spacer-0;
+    }
+
+    a.active .material-icons {
+      color: $rest-page-nav-active-link-color !important;
+    }
+  }
+}
+
+.table-details {
+
+  &__body {
+    @include overflow(overflow, scroll);
+    @include spacer(padding, all, $spacer-24);
+    height: calc(100% - 134px);
+  }
+}

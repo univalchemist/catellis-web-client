@@ -1,0 +1,106 @@
+// Layout Base Stylesheet
+// ========================================
+
+// Global Styles
+html,
+body {
+  @include margin(0 auto);
+  @include overflow(overflow-x, hidden);
+  @include size(100%);
+
+  @include media($medium) {
+    @include size(100% auto);
+  }
+}
+
+main {
+  @include clearfix;
+}
+
+// Backgrounds
+@each $color in $colors {
+  $name:          nth($color, 1);
+  $background:    nth($color, 2);
+
+  .background--#{$name} {
+    background-color: $background;
+  }
+}
+
+// Clearfix
+.clearfix {
+  @include clearfix;
+}
+
+// Divider
+hr {
+  @include spacer(margin, bottom, $spacer-16);
+  border: none;
+  @include border(1px, solid, $gray-base, bottom);
+}
+
+.divider {
+  @include spacer(margin, vertical, $spacer-24);
+}
+
+// Resets
+@each $spacer, $keys in $spacer-positions {
+  $position:  map-get($keys, position);
+
+  // Margin Reset
+  .margin-reset--#{$position} {
+    @include reset(margin, $position);
+  }
+
+  .padding-reset--#{$position} {
+    @include reset(padding, $position);
+  }
+}
+
+.margin--auto {
+  margin: 0 auto;
+}
+
+.margin--reset {
+  @include reset(margin, all);
+}
+
+.padding--reset {
+  @include reset(padding, all);
+}
+
+// Sizes
+.height--fl {
+  height: calc(100% - 16px);
+}
+
+// for rest settings
+.height--fl--100 {
+  height: 100%;
+}
+
+// Spacers
+@each $size, $keys in $spacer-values {
+  $size-value:  map-get($keys, value);
+
+  // Spacer Margin
+  .margin--#{$size} {
+    @include spacer(margin, all, $size-value);
+  }
+
+  // Spacer Padding
+  .padding--#{$size} {
+    @include spacer(padding, all, $size-value);
+  }
+
+  @each $spacer, $keys in $spacer-positions {
+    $position:   map-get($keys, position);
+    .margin-#{$position}--#{$size} {
+      @include spacer(margin, $position, $size-value);
+    }
+
+    .padding-#{$position}--#{$size} {
+     @include spacer(padding, $position, $size-value);
+    }
+  }
+}

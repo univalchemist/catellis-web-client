@@ -1,0 +1,58 @@
+// Animations Base Stylesheets
+// ========================================
+
+// Variables
+$animation-op-0:                      0;
+$animation-op-1:                      1;
+
+$animation-fade-in-trans-end:         scale(1);
+$animation-fade-in-trans-start:       scale(1.02);
+$animation-fade-in-transition:      opacity 0.95s ease;
+
+$animation-fade-in-delay-transition:  opacity 0.75s ease 0.5s;
+
+$animation-fade-in-zoom-transition: transform 0.75s ease, opacity 0.95s ease;
+
+$animation-fade-up-transition:        top 0.95s ease, opacity 0.95s ease;
+
+// Structure
+.fade-in-appear {
+  opacity: $animation-op-0;
+  transition: $animation-fade-in-transition;
+
+  &-active {
+    opacity: $animation-op-1;
+  }
+}
+
+.fade-in-delay-appear {
+  opacity: $animation-op-0;
+  transition: $animation-fade-in-delay-transition;
+
+  &-active {
+    opacity: $animation-op-1;
+  }
+}
+
+.fade-in-zoom-appear {
+  opacity: $animation-op-0;
+  transition: $animation-fade-in-zoom-transition;
+  transform: $animation-fade-in-trans-start;
+
+  &-active {
+    opacity: $animation-op-1;
+    transform: $animation-fade-in-trans-end;
+  }
+}
+
+.fade-up-appear {
+  @include position(relative);
+  top: 60px !important; // animation doesn't work without the flag
+  opacity: $animation-op-0;
+  transition: $animation-fade-up-transition;
+
+  &-active {
+    top: 0 !important; // animation doesn't work without the flag
+    opacity: $animation-op-1;
+  }
+}

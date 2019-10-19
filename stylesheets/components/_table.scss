@@ -1,0 +1,99 @@
+// Table Component Stylesheet
+// ========================================
+
+// Variables
+$table-header-bg-color:             $gray-light;
+$table-header-font-color:           $gray-alt-2;
+
+$table-item-vertical-align:         middle;
+
+$table-row-border-bottom-content:   "";
+$table-row-border-bottom-display:   block;
+$table-row-border-bottom-height:    1px;
+$table-row-border-bottom-bg:        $gray-base;
+$table-row-border-bottom-position:  absolute;
+$table-row-border-bottom-coords-1:  null $spacer-16 null $spacer-16;
+$table-row-border-bottom-coords-2:  null $spacer-8 null $spacer-8;
+
+$table-size:                        100%;
+
+// Structure Styles
+.table {
+  @include size($table-size);
+
+  &__header {
+    @extend .text--bold;
+    @include border(1px, solid, $border-color-alpha, bottom);
+    background-color: $table-header-bg-color;
+    color: $table-header-font-color;
+  }
+
+  th,
+  td {
+    @extend .text--left;
+    @include spacer(padding, vertical, $spacer-16);
+    vertical-align: $table-item-vertical-align;
+
+    &:first-child {
+      @include spacer(padding, left, $spacer-16);
+    }
+
+    &:last-child {
+      @include spacer(padding, right, $spacer-16);
+    }
+
+    button {
+      @include spacer(padding, all, $spacer-8);
+    }
+  }
+
+  // Table Row
+    // TODO: Consider refactoring and removing
+  &__row {
+
+    &:not(:first-child):after {
+      @include position($table-row-border-bottom-position, $table-row-border-bottom-coords-1);
+      background: $table-row-border-bottom-bg;
+      content: $table-row-border-bottom-content;
+      display: $table-row-border-bottom-display;
+      height: $table-row-border-bottom-height;
+    }
+  }
+
+
+  // Condensed Table
+  &--condensed {
+
+    // Condensed Table
+    th,
+    td {
+      @include spacer(padding, vertical, $spacer-8);
+
+      &:first-child {
+        @include spacer(padding, left, $spacer-8);
+      }
+
+      &:last-child {
+        @include spacer(padding, right, $spacer-8);
+      }
+    }
+
+    .table__row {
+
+      &:not(:first-child):after {
+        @include position($table-row-border-bottom-position, $table-row-border-bottom-coords-2);
+      }
+    }
+  }
+
+  // Blank Table
+    // TODO: Refactor to remove important tags
+  &--blank {
+
+    &__text {
+      color: $gray-dark;
+      padding-bottom: $spacer-16 !important;
+      padding-top: $spacer-16 !important;
+    }
+  }
+}

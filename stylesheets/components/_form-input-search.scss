@@ -1,0 +1,28 @@
+// Form Input Search Component Stylesheet
+// ==========================================
+
+// Variables
+$search-background-image:          './assets/images/icons/functional/icon-search.svg';
+$search-background-image-position: 10px;
+$search-background-image-repeat:   no-repeat;
+$search-background-image-size:     $spacer-24;
+$search-background-image-padding:  0 0 0 ($spacer-32 + 5px) !important;
+
+$search-button-cancel-cords:       null 5px null null;
+$search-button-cancel-position:    relative;
+
+
+// Stucture
+input[type="search"],
+.input--search {
+  background-image: url($search-background-image);
+  background-position: $search-background-image-position;
+  background-repeat: $search-background-image-repeat;
+  background-size: $search-background-image-size;
+  padding: $search-background-image-padding;
+
+  // Position Search Cancel Button
+  &::-webkit-search-cancel-button {
+    @include position($search-button-cancel-position, $search-button-cancel-cords);
+  }
+}

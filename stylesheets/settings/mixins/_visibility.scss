@@ -1,0 +1,37 @@
+// Visibility Mixin Settings Stylesheet
+// ============================================
+
+// Overflow Mixin
+@mixin overflow($overflow-prop, $overflow-value) {
+  #{$overflow-prop}: $overflow-value;
+}
+
+// Visibility Mixin
+@mixin visibility($media-type, $hide: false) {
+  // Variables
+  $visibility-hidden:       none;
+  $visibility-visible:      block;
+
+  $viz-base: if($hide, $visibility-hidden, $visibility-visible);
+  $viz-alt: if($hide, $visibility-visible, $visibility-hidden);
+
+  @if $media-type == $small {
+    display: $viz-base;
+    @include media($medium){
+      display: $viz-alt;
+    }
+  } @else if $media-type == $medium {
+    display: $viz-alt;
+    @include media($medium){
+      display: $viz-base;
+    }
+    @include media($large){
+      display: $viz-alt;
+    }
+  } @else {
+    display: $viz-alt;
+    @include media($large) {
+      display: $viz-base;
+    }
+  }
+}

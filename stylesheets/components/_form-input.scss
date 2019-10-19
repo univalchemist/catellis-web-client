@@ -1,0 +1,112 @@
+// Form Input Component Stylesheet
+// ========================================
+
+
+// Variables
+$form-input-background:               $white-base;
+$form-input-border:                   1px solid $gray-base;
+$form-input-border-radius:            5px;
+$form-input-color:                    $black-base;
+$form-input-color-placeholder:        $gray-alt-1;
+$form-input-height:                   50px;
+$form-input-margin:                   0 0 $spacer-16;
+$form-input-padding:                  $spacer-16 $spacer-8;
+$form-input-transition:               border 0.4s ease;
+$form-input-size:                     100% $form-input-height;
+
+$form-input-border-hover:             darken($gray-base, 10%);
+
+$form-input-background-active:        $white-base;
+$form-input-border-active:            1px solid $blue-base;
+$form-input-box-shadow-active:        0 0 5px 0 rgba(11, 11, 11, 0.10);
+
+$form-input-background-inactive:      $gray-base;
+$form-input-border-inactive:          1px solid $gray-alt-2;
+
+$form-input-error-background:         $red-base;
+
+$form-input-success-background:       $green-base;
+
+$form-input-height-sm:                32px;
+$form-input-padding-sm:               $spacer-8;
+
+
+// Structure
+#{$all-text-inputs},
+input,
+select,
+.input--text {
+  @include font-type($primary-sans-serif, normal, 400);
+  @include s-foxtrot;
+  @include size($form-input-size);
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: $form-input-background;
+  border: $form-input-border;
+  border-radius: $form-input-border-radius;
+  color: $form-input-color;
+  margin: $form-input-margin;
+  padding: $form-input-padding;
+  transition: $form-input-transition;
+
+  &::placeholder {
+    color: $form-input-color-placeholder;
+  }
+
+  &:hover {
+    border-color: $form-input-border-hover;
+  }
+
+  &:focus,
+  &:active {
+    border-color: $form-input-border-active;
+    box-shadow: $form-input-box-shadow-active;
+  }
+
+  &:focus {
+    background-color: $form-input-background-active;
+    border: $form-input-border-active;
+    outline: none;
+  }
+
+  &:active {
+    background-color: $form-input-background-active;
+    border: $form-input-border-active !important;
+  }
+
+  &:disabled {
+    background-color: $form-input-background-inactive;
+    border: $form-input-border-inactive;
+    color: $gray-dark;
+    cursor: not-allowed;
+  }
+}
+
+textarea {
+  height: $form-input-height * 2;
+  padding: $form-input-padding;
+}
+
+// Form Input Modifiers
+input.input--error,
+select.input--error {
+  border-color: $form-input-error-background;
+
+  &:hover {
+    border-color: $form-input-error-background;
+  }
+}
+
+input.input--success {
+  border-color: $form-input-success-background;
+
+  &:hover {
+    border-color: $form-input-success-background;
+  }
+}
+
+// Input Sizes
+input.input--sm {
+  height: $form-input-height-sm;
+  padding: $form-input-padding-sm;
+}
