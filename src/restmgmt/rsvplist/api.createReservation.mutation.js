@@ -22,7 +22,7 @@ export const graphQlOp = gql`
       employee: $employee,
       tags: $tags
     ) {
-      id scheduled_start_at party_size party_notes employee
+      id scheduled_start_at party_size party_notes employee seated_at
       customer { name phone_number email tags}
       floor_plan_table { id table_number }
       tags

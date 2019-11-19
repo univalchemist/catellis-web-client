@@ -6,9 +6,16 @@ export function findUpcomingReservations(reservations) {
   return reservations
     .filter(reservation => {
       const reservationStartAt = moment(reservation.scheduled_start_at);
-
-      return reservationStartAt.isAfter(now);
+      const seated_at = reservation.seated_at;
+      return reservationStartAt.isAfter(now) && !seated_at;
     });
+}
+
+export function findSeatReservations(reservations) {
+    return reservations
+        .filter(reservation => {
+            return reservation.reservation_status === 'seated';
+        });
 }
 
 export function findCurrentReservation(reservations) {

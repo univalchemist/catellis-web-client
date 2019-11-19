@@ -43,6 +43,7 @@
     "graphql-type-json": "^0.2.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "lodash": "^4.17.15",
     "lodash.get": "^4.4.2",
     "lodash.pick": "^4.4.0",
     "lodash.remove": "^4.7.0",

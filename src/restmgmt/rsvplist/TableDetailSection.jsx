@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Mutation } from 'react-apollo';
+import {Mutation, withApollo} from 'react-apollo';
 import * as moment from 'moment-timezone';
 
 import { FadeUpAnimation } from 'shared/animations';
@@ -15,8 +15,10 @@ import { 
   findCurrentReservation,
   findUpcomingReservations,
 	hasTablesConflicts,
+  findSeatReservations
 } from 'restmgmt/shared/reservation-filters';
 import { graphQlOp as editReservationGql } from 'restmgmt/rsvplist/api.editReservation.mutation';
+import { reservationDateFormat } from 'shared/reservation/fields/ReservationDateField';
 
 const CurrentReservation = ({reservation}) => {
   return (
@@ -74,12 +76,64 @@ const CurrentReservation = ({reservation}) => {
 }
 
 export class TableDetailSection extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      reservations: props.reservations
+    }
+  }
+  componentDidMount() {
+    console.log(this.props)
+  }
+
+  onChangeReservationToComplete = async reservation => {
+    return await this.props.client.mutate({
+      mutation: editReservationGql,
+      variables: {
+        input: {
+          id: reservation.id,
+          reservation_status: 'complete'
+        }
+      }
+    });
+  };
+  onClickBtnSeat = async (reservations, reservation) => {
+    const seatReservations = findSeatReservations(reservations);
+
+    const reservationDate = moment().format('dddd, MMMM D, YYYY');
+    const reservationTime = moment().format('h:mm a');
+    const timezoneName = this.props.restaurant.timezone_name;
+    const reservationAtMoment = moment.tz(
+        `${reservationDate} ${reservationTime}`,
+        `${reservationDateFormat} h:mm a`,
+        timezoneName
+    );
+
+    const seated_at = reservationAtMoment.toISOString();
+    try {
+      const promises = seatReservations.map(r => this.onChangeReservationToComplete(r));
+      await Promise.all(promises);
+      await this.props.client.mutate({
+        mutation: editReservationGql,
+        variables: {
+          input: {
+            id: reservation.id,
+            reservation_status: 'seated',
+            seated_at
+          }
+        }
+      });
+      const reservations = this.state.reservations.filter(r => { return r.id !== reservation.id});
+      this.setState({ reservations });
+    } catch (e) {
+      console.log('super onClick button Seat error', e);
+    }
+  };
   render() {
     const {
       floorPlanTable,
-      reservations,
     } = this.props;
-
+    const { reservations } = this.state;
     const currentReservation = findCurrentReservation(reservations);
     const upcomingReservations = findUpcomingReservations(reservations);
 		const isConflicted = hasTablesConflicts(reservations);
@@ -106,7 +160,11 @@ export class TableDetailSection extends Component {
                 <li className="chip__list__item" key={reservation.id}>
                   <ReservationTableAssignLink reservation={reservation}>
                     {({onClick}) => (
-                      <ReservationChip reservation={reservation} />
+                      <ReservationChip
+                          reservation={reservation}
+                          btnSeat={true}
+                          onClickBtnSeat={() => this.onClickBtnSeat(reservations, reservation)}
+                      />
                     )}
                   </ReservationTableAssignLink>
                 </li>
@@ -165,4 +223,4 @@ const QueriedTableDetailSection = ({floorPlanTable, ...props}) => (
   </ActiveDateCurrentRestaurantQuery>
 );
 
-export default QueriedTableDetailSection;
+export default withApollo(QueriedTableDetailSection);

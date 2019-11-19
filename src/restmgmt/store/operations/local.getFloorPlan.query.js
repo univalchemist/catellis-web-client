@@ -7,7 +7,7 @@ export const graphQlOp = gql`
     getFloorPlan(id: $id) @client {
       id name
       floor_plan_tables {
-        id x y table_number table_shape table_size min_covers max_covers table_type table_rotation _destroy
+        id x y table_reservation_status table_number table_shape table_size min_covers max_covers table_type table_rotation _destroy
       }
     }
   }

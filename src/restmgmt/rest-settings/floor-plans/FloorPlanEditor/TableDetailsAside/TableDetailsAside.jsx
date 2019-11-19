@@ -104,6 +104,31 @@ export const TableDetailsAside = ({
 
                         return (
                           <Frag>
+                              <Field
+                                  name="table_reservation_status"
+                                  validate={composeValidators(required)}
+                              >
+                                  {({input, meta}) => {
+                                      const isError = meta.error && meta.touched;
+
+                                      return (
+                                          <Frag>
+                                              <Label
+                                                  required={false}>{'Table Reservation Status'}</Label>
+                                              <select
+                                                  {...input}
+                                                  className={isError ? 'input--error' : ''}
+                                              >
+                                                  <option>Select Reservation Status</option>
+                                                  <option value={'online_in_store'}>Online & In-store</option>
+                                                  <option value={'in_store'}>In-store Only</option>
+                                                  <option value={'blocked'}>Blocked</option>
+                                              </select>
+                                              <FormError meta={meta}/>
+                                          </Frag>
+                                      );
+                                  }}
+                              </Field>
                             <Label>Table Number</Label>
                             <input
                               {...input}
@@ -197,6 +222,7 @@ export default compose(
 							id: attrs.id,
 							x: attrs.x,
 							y: attrs.y,
+                            table_reservation_status: attrs.table_reservation_status,
 							table_number: attrs.table_number,
 							table_type: attrs.table_type,
 							min_covers: attrs.min_covers,

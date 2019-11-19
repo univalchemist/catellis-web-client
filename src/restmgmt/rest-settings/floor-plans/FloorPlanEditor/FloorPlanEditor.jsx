@@ -18,7 +18,6 @@ import { graphQlOp as getFloorPlanGql } from 'restmgmt/store/operations/local.ge
 class FloorPlanEditor extends React.Component {
   render() {
     const floorPlan = this.props.floorPlan;
-
     let asideContent = (
       <FloorPlanAside
         history={this.props.history}
@@ -59,7 +58,6 @@ class QueriedFloorPlanEditor extends React.Component {
       <Query query={floorPlanStateGql}>
         {({loading, error, data: floorPlanState}) => {
           if (loading) return (<LoadingIndicator />);
-
           if (error) {
             console.error(error);
             return (<GenericError />);

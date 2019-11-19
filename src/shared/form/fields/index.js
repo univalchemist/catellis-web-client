@@ -1,8 +1,10 @@
 export { CheckboxField } from './CheckboxField';
 export { EmailField } from './EmailField';
 export { NameField } from './NameField';
+export { OptionalNameField } from './OptionalNameField';
 export { TagsField } from './TagsField';
 export { PhoneField } from './PhoneField';
+export { OptionalPhoneField } from './OptionalPhoneField';
 export { ToggleField } from './ToggleField';
 export { MinPartySizeField } from './MinPartySizeField';
 export { MaxPartySizeField } from './MaxPartySizeField';

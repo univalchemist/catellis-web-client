@@ -19,6 +19,7 @@ export const graphQlOp = gql`
     ) {
       id scheduled_start_at scheduled_end_at party_size party_notes tags reservation_status employee
       table_conflicted
+      seated_at
       customer { id name phone_number tags}
       restaurant { id timezone_name }
       floor_plan_table { id table_number }

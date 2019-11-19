@@ -8,7 +8,7 @@ export const graphQlOp = gql`
     editReservation(
       input: $input
     ) {
-      id, scheduled_start_at, party_size, reservation_status, tags, override_turn_time
+      id, scheduled_start_at, party_size, reservation_status, tags, override_turn_time, seated_at
       customer {id, name, phone_number, tags}
       floor_plan_table { id table_number }
     }

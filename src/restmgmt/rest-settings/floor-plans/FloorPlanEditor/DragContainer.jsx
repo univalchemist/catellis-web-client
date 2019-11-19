@@ -26,6 +26,7 @@ const tableTarget = {
 
 			const newTableDetails = {
 				table_number: '?',
+				table_reservation_status: '',
 				table_size: item.table_size,
 				table_shape: item.table_shape,
 				table_type: 'indoor',
@@ -126,6 +127,7 @@ export default compose(
 								x: attrs.x,
 								table_shape: attrs.table_shape,
 								table_size: attrs.table_size,
+								table_reservation_status: attrs.table_reservation_status,
 								table_number: attrs.table_number,
 								table_type: attrs.table_type,
 								table_rotation: attrs.table_rotation,
